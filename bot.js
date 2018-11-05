@@ -83,7 +83,15 @@ return;
 
 
 
-
+client.on ('message', msg => { //By Die#1406
+  if (msg.content ===  'السبه') { 
+    msg.reply('لا تسب').then(sb => {  
+    msg.delete(30);
+   sb.delete(1200);
+      
+  })
+  }
+});
 
 
 
