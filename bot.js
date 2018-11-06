@@ -5,7 +5,7 @@ const prefix = '.'
 
 client.on('ready', () => {
   console.log(`Logged in as ${client.user.tag}!`);
-client.user.setGame(`+help`,"http://twitch.tv/S-F")
+client.user.setGame(`+SOON`,"http://twitch.tv/S-F")
   console.log('')
   console.log('')
   console.log('╔[═════════════════════════════════════════════════════════════════]╗')
@@ -32,6 +32,17 @@ client.user.setGame(`+help`,"http://twitch.tv/S-F")
 
 
 
+client.on ("guildMemberAdd", member => {
+  
+  var role = member.guild.roles.find ("name","▶ 𝑴𝑬𝑴𝑩𝑬𝑹 ◀");
+member.addRole(role);
+  
+})
+
+
+  client.on ("guildMemberRemove", member => { 
+
+  })
 
 
 
