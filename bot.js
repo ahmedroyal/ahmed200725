@@ -56,7 +56,7 @@ member.addRole(role);
 
 
 client.on('message', msg => {
- if(msg.content === "-bot") {
+ if(msg.content === "+bot") {
 let embed24 = new Discord.RichEmbed()   
    .setThumbnail(client.user.avatarURL)
    .setColor("RANDOM")  
