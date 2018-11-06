@@ -51,27 +51,6 @@ member.addRole(role);
 
 
 
-client.on('message', message => {
-  if (!message.content.startsWith(prefix)) return;
-  const verifed = ["client.on('message', message => {
-  if (!message.content.startsWith(prefix)) return;
-  const verifed = ["288240894979604491"];
-if (message.content.startsWith(prefix + 'ownerbot')) {
-    if(!message.channel.guild) return;
-if( verifed.some(word => message.author.id.includes(word)) ) {    return message.channel.sendMessage("**👑 انت صاحب البوت **")
-} else {
-   message.reply("**😡 انت لست صاحب البوت**");   
-}
-}
-});"];
-if (message.content.startsWith(prefix + 'ownerbot')) {
-    if(!message.channel.guild) return;
-if( verifed.some(word => message.author.id.includes(word)) ) {    return message.channel.sendMessage("**👑 انت صاحب البوت **")
-} else {
-   message.reply("**😡 انت لست صاحب البوت**");   
-}
-}
-});
 
 
 
