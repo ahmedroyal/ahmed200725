@@ -1298,5 +1298,230 @@ ${prefix}queue ⇏ لمعرفة قآئمة التشغيل
 
 
 
+     client.on("message", message => {
+ if (message.content === "+member") {
+  const embed = new Discord.RichEmbed()
+      .setColor("RANDOM")
+      .setDescription(` ✧▬▬▬▬▬▬ Member command ▬▬▬▬▬▬✧
+ 
++credit | to see your credit
+--------------------------
++daily | to get your daily
+--------------------------
++ping | to see your ping
+--------------------------
++avatar | to see your avatar
+--------------------------
++id | to see your id
+--------------------------
++tag | to see your tag
+--------------------------
++new  | to create ticket
+-------------------------
+رابط | يعطيك رابط السيرفر
+-------------------------
++data | to see you data
+-------------------------
++w <location> | to see your weather
+-------------------------
++فعلني | to avtive you
+-------------------------
++mcskin <name> | لمعرفة سكنك في ماين كرفت
+-------------------------
++minec | لعبة ماين كرفت
+-------------------------
++invites |  لمعرفة كم شخص جبت للسيرفر
+ ✧▬▬▬▬▬▬ Member command ▬▬▬▬▬▬✧`)
+ .setFooter("By : ! NM| 𝕀𝕀ℝ𝔼ℤ𝔼𝕏_𝕐𝕋#7678 ")
+   message.channel.sendEmbed(embed)
+ }
+ });
+
+
+
+
+
+
+client.on('message' , function (message){
+      var token = 'NTA3NjIxNTcwNDIwODAxNTM3.Dr3h_A.rm9PBgErj9sewmvy308qT9ixip4'; // التوكن هنا بس
+      if(message.content === '+restart') {
+if(message.author.id !== '288240894979604491') return message.reply('الامر خاص بـ صاحب البوت وشكرا');
+          client.destroy();
+          client.login(token) // لا تغيرها
+var time = 7200000;
+client.setInterval(function() {
+    client.destroy();
+    client.login(token) // لا تغيرها
+  }, time);
+}
+}
+          
+          
+          
+          
+
+          
+client.on("message", message => {
+    var prefix = "+"
+    if (!message.content.startsWith(prefix)) return;
+      let command = message.content.split(" ")[0];
+      command = command.slice(prefix.length);
+        if(command === "mcskin") {
+                const args = message.content.split(" ").slice(1).join(" ")
+        if (!args) return message.channel.send("** Type your skin name **");
+        const image = new Discord.Attachment(`https://minotar.net/armor/body/${args}`, "skin.png");
+    message.channel.send(image)
+        }
+    });
+
+
+
+
+
+
+client.on("message", async message => {
+            if(!message.channel.guild) return;
+            var prefix = "+";
+        if(message.content.startsWith(prefix + 'invites')) {
+        var nul = 0
+        var guild = message.guild
+        await guild.fetchInvites()
+            .then(invites => {
+             invites.forEach(invite => {
+                if (invite.inviter === message.author) {
+                     nul+=invite.uses
+                    }
+                });
+            });
+          if (nul > 0) {
+              console.log(`\n${message.author.tag} has ${nul} invites in ${guild.name}\n`)
+              var embed = new Discord.RichEmbed()
+                  .setColor("#000000")
+                    .addField(`${message.author.username}`, `لقد قمت بدعوة **${nul}** شخص`)
+                          message.channel.send({ embed: embed });
+                      return;
+                    } else {
+                       var embed = new Discord.RichEmbed()
+                        .setColor("#000000")
+                        .addField(`${message.author.username}`, `لم تقم بدعوة أي شخص لهذة السيرفر`)
+ 
+                       message.channel.send({ embed: embed });
+                        return;
+                    }
+        }
+        if(message.content.startsWith(prefix + 'invite-codes')) {
+let guild = message.guild
+var codes = [""]
+message.channel.send(":postbox: **لقد قمت بأرسال جميع روابط الدعوات التي قمت بأنشائها في الخاص**")
+guild.fetchInvites()
+.then(invites => {
+invites.forEach(invite => {
+if (invite.inviter === message.author) {
+codes.push(`discord.gg/${invite.code}`)
+}
+})
+}).then(m => {
+if (codes.length < 0) {
+    var embed = new Discord.RichEmbed()
+.setColor("#000000")
+.addField(`Your invite codes in ${message.guild.name}`, `You currently don't have any active invites! Please create an invite and start inviting, then you will be able to see your codes here!`)
+message.author.send({ embed: embed });
+return;
+} else {
+    var embed = new Discord.RichEmbed()
+.setColor("#000000")
+.addField(`Your invite codes in ${message.guild.name}`, `Invite Codes:\n${codes.join("\n")}`)
+message.author.send({ embed: embed });
+return;
+}
+})
+}
+ 
+});
+
+
+
+
+
+
+const temp = {};
+client.on('message', async message => {
+ if(message.channel.type === "dm") return;
+  if(message.author.bot) return;
+   if(!temp[message.guild.id]) temp[message.guild.id] = {
+    time: "3000",
+     category : 'click here',
+      channel : 'click here'
+       }
+        if(message.content.startsWith('+temp on')){
+         if(!message.member.hasPermission(`MANAGE_GUILD`)) return;
+          var ggg= message.guild.createChannel('click here', 'category').then(cg => {
+           var ccc =message.guild.createChannel('click here', 'voice').then(ch => {
+            ch.setParent(cg)
+             message.channel.send('**Done || Temporary Rooms Has Been Activated . :ballot_box_with_check: **')
+              client.on('message' , message => {
+               if(message.content === '+temp off') {
+                if(!message.member.hasPermission(`MANAGE_GUILD`)) return;
+                 cg.delete()
+                  ch.delete()
+                   message.channel.send('**Done || Closed . :ballot_box_with_check:**  ')
+                    }
+                     });
+                      const time = temp[message.guild.id].time
+                       client.on('message' , message => {
+                        if (message.content.startsWith(prefix + "fgfdkjfdhfgdjghdhghj")) {
+                         if(!message.member.hasPermission(`MANAGE_GUILD`)) return;
+                          let newTime= message.content.split(' ').slice(1).join(" ")
+                          if(!newTime) return message.reply(`**${prefix}temptime <time>  \`1000 = 1s\`**`)
+                     if(isNaN(newTime)) return message.reply(`** The Time Be Nambers :face_palm: **`);
+                    if(newTime < 1) return message.reply(`**The Time Be Up \`3000s\`**`)
+                       temp[message.guild.id].time = newTime
+                      message.channel.send(`**Temp Rooms Time Change To \`${newTime}\`**`);
+                     }
+                    });
+                   client.on('voiceStateUpdate', (old, neww) => {
+                  let newUserChannel = neww.voiceChannel
+                 let oldUserChannel = old.voiceChannel
+                temp[message.guild.id].category = cg.id
+               temp[message.guild.id].channel = ch.id
+              let channel = temp[message.guild.id].channel
+             let category = temp[message.guild.id].category
+            if(oldUserChannel === undefined && newUserChannel !== undefined && newUserChannel.id == channel) {
+           neww.guild.createChannel(neww.displayName , 'voice').then(c => {
+          c.setParent(category)
+         let scan = setTimeout(()=>{
+        if(!neww.voiceChannel) {
+       c.delete();
+      client.channels.get(channel).overwritePermissions(neww, {
+     CONNECT:true,
+    SPEAK:true
+   })
+  }
+ }, temp[neww.guild.id].time);
+  c.overwritePermissions(neww, {
+   CONNECT:true,
+    SPEAK:true,
+     MANAGE_CHANNEL:true,
+      MUTE_MEMBERS:true,
+       DEAFEN_MEMBERS:true,
+    MOVE_MEMBERS:true,
+     VIEW_CHANNEL:true
+      })
+       neww.setVoiceChannel(c)
+            })
+             client.channels.get(channel).overwritePermissions(neww, {
+          CONNECT:false,
+           SPEAK:false
+        })
+               }
+              })
+             })
+           })
+          }
+      });
+
+
+
+
 
 client.login(process.env.BOT_TOKEN);
