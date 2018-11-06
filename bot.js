@@ -82,8 +82,7 @@ return;
 
 
 
-
-client.on ('message', msg => { //By Die#1406
+client.on ('message', msg => { 
   if (msg.content ===  'السبه') { 
     msg.reply('لا تسب').then(sb => {  
     msg.delete(30);
@@ -92,7 +91,6 @@ client.on ('message', msg => { //By Die#1406
   })
   }
 });
-
 
 
 
