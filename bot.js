@@ -67,7 +67,7 @@ let embed24 = new Discord.RichEmbed()
    .addField("🤖:id: *Bot ID** :id:🤖 ", client.user.id, true)
    .addField("📆**Bot Created At**📆", `${moment(client.user.createdAt).format('D/M/YYYY h:mm a')} **\n** \`${moment(client.user.createdAt).fromNow()}\``, true)
    .addField("🤖**User**🤖", client.users.size, true)
-   .addField(`👑**Owner Code By:**👑`,`👑**! NM Mody#7040**👑`, true)
+   .addField(`👑**Owner Code By:**👑`,`👑**DEL.25♥♥#1409**👑`, true)
    .setFooter(`${msg.author.tag}`, `${msg.author.avatarURL}`, true)
 msg.channel.sendEmbed(embed24)
 }
