@@ -300,50 +300,6 @@ if(!message.channel.guild) return;
 
 
 
-  
-
-
-
-
-
-
-
-
-
-
-client.on('message' , function (message){
-      var token = 'NTA3ODc4ODU5MzUwNDc0NzUz.DsS1ow.IrjCcrFG7q7HW8nAd707J-PbLIE'; // التوكن هنا بس
-      if(message.content === '+restart') {
-if(message.author.id !== '478544778741678090') return message.reply('الامر خاص بـ صاحب البوت وشكرا');
-          client.destroy();
-          client.login(token) // لا تغيرها
-var time = 7200000;
-client.setInterval(function() {
-    client.destroy();
-    client.login(token) // لا تغيرها
-  }, time);
-}
-})
-
-
-
-
-
-
-
-
-
-
- 
- 
-
-
-
-
-
-
-
-
 client.on('message', message => {
     if (message.content.startsWith("+inv")) {
 
