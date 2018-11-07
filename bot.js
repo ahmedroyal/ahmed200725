@@ -211,4 +211,55 @@ client.on('message', message => {
 
 
 
+
+
+
+
+client.on('message', message => {
+    if(message.content.includes('discord.gg')){
+                                            if(!message.channel.guild) return message.reply('** advertising me on DM ? 🤔   **');
+        if (!message.member.hasPermissions(['ADMINISTRATOR'])){
+        message.delete()
+    return message.reply(`** No Invite Links :angry: !**`)
+    }
+}
+});
+
+
+
+
+
+
+
+
+
+
+
+ client.on('guildMemberAdd', member => {
+    let channel = member.guild.channels.find('name', '⸨𖤐مرحبا𖤐⸩');
+    let memberavatar = member.user.avatarURL
+      if (!channel) return;
+    let embed = new Discord.RichEmbed()
+        .setColor('RANDOM')
+        .setThumbnail(memberavatar)
+        .addField('•🔰|Name» الإسم',`${member}`)
+        .addField('•🌹|Welcome » نورت السيرفر' , `Welcome to the server, ${member}`)
+        .addField('•🆔| User » اي دي العضو', "**[" + `${member.id}` + "]**" )
+                .addField('➡| انت العضو رقم',`${member.guild.memberCount}`)                     
+                                     .addField('•🔮|Server Name » اسم السيرفر', `${member.guild.name}`,true)
+    .addField('•🕣|Time Create » مدة انشاء حسابك', member.user.createdAt.toLocaleString(), true)
+ 
+                                       
+     .setFooter("!NM Mody#7040")
+        .setTimestamp()
+   
+      channel.sendEmbed(embed);
+    });
+  
+
+
+
+
+
+
 client.login(process.env.BOT_TOKEN);
