@@ -513,7 +513,6 @@ message.author.send(`**مدة الرابط : يـوم
 
 
 
-c
 
 
 
