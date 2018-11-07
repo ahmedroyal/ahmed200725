@@ -363,36 +363,4 @@ client.on('message', message => {
 
 
 
-
-
-
-
-
-
-
-
- client.on('message', message => {
-  if (!message.content.startsWith($)) return;
-  const verifed = ["478544778741678090"];
-if (message.content.startsWith(prefix + 'ownerbot')) {
-    if(!message.channel.guild) return;
-if( verifed.some(word => message.author.id.includes(word)) ) {    return message.channel.sendMessage("**👑 انت صاحب البوت **")
-} else {
-   message.reply("**😡 انت لست صاحب البوت**");   
-}
-}
-
-      
-      
-      
-        
-      
-
-
-       
-  
-        
-      
-
-
 client.login(process.env.BOT_TOKEN);
