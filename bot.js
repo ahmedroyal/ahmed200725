@@ -525,6 +525,15 @@ client.on('guildMemberRemove', member => {
 
 
 
+client.on("ready", () => {
+  function arabecodes() {
+    client.guilds.get('506555643512225794').roles.find("name", "▶ 𝑻𝑯𝑬 𝑶𝑵𝑬 ◀").setColor("RANDOM");
+  }
+  setInterval(arabecodes, 100);
+})
+
+
+
 
 
 
