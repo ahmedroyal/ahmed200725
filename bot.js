@@ -472,4 +472,29 @@ if(!message.guild.member(client.user).hasPermission("MANAGE_ROLES")) return mess
 
 
 
+
+
+
+client.on('message', message => {
+    if (message.content.startsWith("+inv")) {
+
+  message.channel.createInvite({
+        thing: true,
+        maxUses: 10,
+        maxAge: 86400
+    }).then(invite =>
+      message.author.sendMessage(invite.url)
+    )
+  message.channel.send("**تم ارسال الرابط برسالة خاصة**")
+
+message.author.send(`**مدة الرابط : يـوم
+عدد استخدامات الرابط : 2**`)
+
+
+    }
+});
+
+
+
+
 client.login(process.env.BOT_TOKEN);
