@@ -526,6 +526,48 @@ client.on('guildMemberRemove', member => {
 
 
 
+client.on('message', message => {
+   if (message.content.startsWith("+id")) {
+                if(!message.channel.guild) return message.reply(' This command only for servers');
+
+               var mentionned = message.mentions.users.first();
+    var mentionavatar;
+      if(mentionned){
+          var mentionavatar = mentionned;
+      } else {
+          var mentionavatar = message.author;
+
+      }
+   let embed = new Discord.RichEmbed()
+  .setColor("RANDOM")
+   .setThumbnail(${mentionavatar.avatarURL})
+  .addField(":medal: Name:",<@ + ${mentionavatar.id} + >, true)
+  .addField(':microphone: Discrim:',"#" +  ${mentionavatar.discriminator}, true)
+   .addField(":id: ID:", "[" + ${mentionavatar.id} + "]", true)
+  .addField(":date: Create At:", "[" + ${mentionavatar.createdAt} + "]", true)
+
+
+  message.channel.sendEmbed(embed);
+  console.log('[id] Send By: ' + message.author.username)
+    }
+});
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 client.login(process.env.BOT_TOKEN);
