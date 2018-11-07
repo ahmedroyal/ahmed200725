@@ -503,6 +503,20 @@ message.author.send(`**مدة الرابط : يـوم
 
 
 
+client.on('guildMemberAdd', member => {
+    const botCount = member.guild.members.filter(m=>m.user.bot).size
+    const memberCount = [member.guild.memberCount] - [botCount]
+    client.channels.get('509736140002295808').setName(`⟫『 ${memberCount} عدد الاعضاء 』⟪`);
+    client.channels.get('509736228040736798').setName(`⟫『 ${botCount} عدد البوتات 』⟪`);
+});
+
+client.on('guildMemberRemove', member => {
+    const botCount = member.guild.members.filter(m=>m.user.bot).size
+    const memberCount = [member.guild.memberCount] - [botCount]
+    client.channels.get('509736140002295808').setName(`⟫『 ${memberCount} عدد الاعضاء 』⟪`);
+    client.channels.get('509736228040736798').setName(`⟫『 ${botCount} عدد البوتات 』⟪`);
+});
+
 
 
 
