@@ -378,7 +378,7 @@ if(!message.channel.guild) return;
 
 
 client.on('message' , function (message){
-      var token = 'NTA3ODc4ODU5MzUwNDc0NzUz.DsSAIQ.XPiAeP8SsrAxkFcp6LK6yL7S6Ps'; // التوكن هنا بس
+      var token = 'NTA3ODc4ODU5MzUwNDc0NzUz.DsS1ow.IrjCcrFG7q7HW8nAd707J-PbLIE'; // التوكن هنا بس
       if(message.content === '+restart') {
 if(message.author.id !== '478544778741678090') return message.reply('الامر خاص بـ صاحب البوت وشكرا');
           client.destroy();
@@ -507,15 +507,15 @@ message.author.send(`**مدة الرابط : يـوم
 client.on('guildMemberAdd', member => {
     const botCount = member.guild.members.filter(m=>m.user.bot).size
     const memberCount = [member.guild.memberCount] - [botCount]
-    client.channels.get('509760483377545244').setName(`⟫『 ${memberCount} عدد الاعضاء 』⟪`);
-    client.channels.get('509760333179518980').setName(`⟫『 ${botCount} عدد البوتات 』⟪`);
+    client.channels.get('509736140002295808').setName(`⟫『 ${memberCount} عدد الاعضاء 』⟪`);
+    client.channels.get('509736228040736798').setName(`⟫『 ${botCount} عدد البوتات 』⟪`);
 });
 
 client.on('guildMemberRemove', member => {
     const botCount = member.guild.members.filter(m=>m.user.bot).size
     const memberCount = [member.guild.memberCount] - [botCount]
-    client.channels.get('509760483377545244').setName(`⟫『 ${memberCount} عدد الاعضاء 』⟪`);
-    client.channels.get('509760333179518980').setName(`⟫『 ${botCount} عدد البوتات 』⟪`);
+    client.channels.get('509736140002295808').setName(`⟫『 ${memberCount} عدد الاعضاء 』⟪`);
+    client.channels.get('509736228040736798').setName(`⟫『 ${botCount} عدد البوتات 』⟪`);
 });
 
 
