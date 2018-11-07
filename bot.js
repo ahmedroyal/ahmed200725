@@ -271,25 +271,6 @@ if(!message.channel.guild) return;
 
 
 
- client.on('message', message => {
-        var prefix = "+";
-        if(message.content.startsWith(prefix + 'mutevoice')) {
-          if(!message.member.hasPermission("MUTE_MEMBERS")) return message.channel.sendMessage("**ليس لديك صلاحية لاعطاء ميوت صوتي**❌ ").then(m => m.delete(5000));
-          if(!message.guild.member(client.user).hasPermission("MUTE_MEMBERS")) return message.reply("**I Don't Have `MUTE_MEMBERS` Permission**").then(msg => msg.delete(6000))
-           
-        if(message.mentions.users.size === 0) {
-          return message.reply("Please mention a user to mute.");
-        }
-        let muteMember = message.guild.member(message.mentions.users.first());
-        if(!muteMember) {
-          return message.reply("Try again.");
-        }
-        muteMember.setMute(true);
-        if(muteMember) {
-          message.channel.sendMessage("User muted successfully.");
-        }
-      }
-    });
 
 
 
@@ -390,7 +371,7 @@ client.on('message', message => {
 
 
 
-	  client.on('message', message => {
+ client.on('message', message => {
   if (!message.content.startsWith($)) return;
   const verifed = ["478544778741678090"];
 if (message.content.startsWith(prefix + 'ownerbot')) {
@@ -404,214 +385,13 @@ if( verifed.some(word => message.author.id.includes(word)) ) {    return message
       
       
       
-    
-      
-      
-      
-
-
-
-
-  
-
-      
-      
-      
-      
-      
-    client.on('message', message => {
-      if(message.content.startsWith ("+marry")) {
-      if(!message.channel.guild) return message.reply('** This command only for servers **')
-      var proposed = message.mentions.members.first()
-     
-      if(!message.mentions.members.first()) return message.reply('لازم تطلب ايد وحدة').catch(console.error);
-      if(message.mentions.users.size > 1) return message.reply('ولد ما يصحلك الا حرمة وحدة كل مرة').catch(console.error);
-       if(proposed === message.author) return message.reply(`**خنثى ؟ **`);
-        if(proposed === client.user) return message.reply(`** تبي تتزوجني؟ **`);
-              message.channel.send(`**${proposed} 
- بدك تقبلي عرض الزواج من ${message.author}
- العرض لمدة 15 ثانية 
- اكتب موافقة او لا** `)
-
-const filter = m => m.content.startsWith("موافقة");
-message.channel.awaitMessages(filter, { max: 1, time: 15000, errors: ['time'] })
-.then(collected =>{ 
-    message.channel.send(`**${message.author} و ${proposed} الف الف مبروك الله يرزقكم الذرية الصالحة**`);
-})
-   .catch(collected => message.channel.send(`**السكوت علامة الرضا نقول مبروك ؟**`))
-   
-   const filte = m => m.content.startsWith("لا");
-message.channel.awaitMessages(filte, { max: 1, time: 15000, errors: ['time'] })
-.then(collected =>{ 
-   message.channel.send(`**${message.author} تم رفض عرضك**`);
-})
         
+      
+
+
+       
   
-             
-    
-  }
-});
-      
-      
-      
-
-      
-      
-
-      
-client.on('message' , message => {
-  var prefix = "+";
-  if(message.author.bot) return;
-  if(message.content.startsWith(prefix + "vote")) {
-    let args = message.content.split(" ").slice(1);
-
-
-    let suggestmessage = args.join(" ").slice(22);
-    let suggestchannel = message.mentions.channels.first();
-
-    if (!suggestchannel) {
-        return message.reply("Please Mention the channel!")
-    }
-
-    if (!suggestmessage) {
-        return message.reply("Plase Give Text To send Channel!")
-    
-         
-    }
-     message.delete();
-suggestchannel.send("@everyone  `||` @here ");
-    let embed = new Discord.RichEmbed()
-        .addField("**", `${suggestmessage}`)
-        .setFooter(`by ${message.author.tag}`)
-        .setTimestamp()
-    suggestchannel.send({
-        embed
-    }).then(msg => {
-        msg.react("✅").then(r => msg.react("❎"))
-    });
-
-
-    message.reply(`Your message is sended.`).then(msg => msg.delete(1000));
-    return;
-}
-});
-      
-      
-
-      
-      
-      
-      
-
-      
-      
-      
-  
-
-      
-      
-      
-      
-      
-      client.on('message', message => {
-    var prefix = "+"
-  if (message.author.x5bz) return;
-  if (!message.content.startsWith(prefix)) return;
-
-  let command = message.content.split(" ")[0];
-  command = command.slice(prefix.length);
-
-  let args = message.content.split(" ").slice(1);
-
-  if (command == "ban") {
-               if(!message.channel.guild) return message.reply('** This command only for servers**');
-         
-  if(!message.guild.member(message.author).hasPermission("BAN_MEMBERS")) return message.reply("**You Don't Have ` BAN_MEMBERS ` Permission**");
-  if(!message.guild.member(client.user).hasPermission("BAN_MEMBERS")) return message.reply("**I Don't Have ` BAN_MEMBERS ` Permission**");
-  let user = message.mentions.users.first();
-  let reason = message.content.split(" ").slice(2).join(" ");
-  /*let b5bzlog = client.channels.find("name", "5bz-log");
-  if(!b5bzlog) return message.reply("I've detected that this server doesn't have a 5bz-log text channel.");*/
-  if (message.mentions.users.size < 1) return message.reply("**منشن شخص**");
-  if(!reason) return message.reply ("**اكتب سبب الطرد**");
-  if (!message.guild.member(user)
-  .bannable) return message.reply("**لايمكنني طرد شخص اعلى من رتبتي يرجه اعطاء البوت رتبه عاليه**");
-
-  message.guild.member(user).ban(7, user);
-
-  const banembed = new Discord.RichEmbed()
-  .setAuthor(`BANNED!`, user.displayAvatarURL)
-  .setColor("RANDOM")
-  .setTimestamp()
-  .addField("**User:**",  '**[ ' + `${user.tag}` + ' ]**')
-  .addField("**By:**", '**[ ' + `${message.author.tag}` + ' ]**')
-  .addField("**Reason:**", '**[ ' + `${reason}` + ' ]**')
-  message.channel.send({
-    embed : banembed
-  })
-}
-});
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      client.on('message', message => {
-    var prefix = "+"
-  if (message.author.x5bz) return;
-  if (!message.content.startsWith(prefix)) return;
-
-  let command = message.content.split(" ")[0];
-  command = command.slice(prefix.length);
-
-  let args = message.content.split(" ").slice(1);
-
-  if (command == "kick") {
-               if(!message.channel.guild) return message.reply('** This command only for servers**');
-         
-  if(!message.guild.member(message.author).hasPermission("KICK_MEMBERS")) return message.reply("**You Don't Have ` KICK_MEMBERS ` Permission**");
-  if(!message.guild.member(client.user).hasPermission("KICK_MEMBERS")) return message.reply("**I Don't Have ` KICK_MEMBERS ` Permission**");
-  let user = message.mentions.users.first();
-  let reason = message.content.split(" ").slice(2).join(" ");
-  if (message.mentions.users.size < 1) return message.reply("**منشن شخص**");
-  if(!reason) return message.reply ("**اكتب سبب الطرد**");
-  if (!message.guild.member(user)
-  .kickable) return message.reply("**لايمكنني طرد شخص اعلى من رتبتي يرجه اعطاء البوت رتبه عالي**");
-
-  message.guild.member(user).kick();
-
-  const kickembed = new Discord.RichEmbed()
-  .setAuthor(`KICKED!`, user.displayAvatarURL)
-  .setColor("RANDOM")
-  .setTimestamp()
-  .addField("**User:**",  '**[ ' + `${user.tag}` + ' ]**')
-  .addField("**By:**", '**[ ' + `${message.author.tag}` + ' ]**')
-  .addField("**Reason:**", '**[ ' + `${reason}` + ' ]**')
-  message.channel.send({
-    embed : kickembed
-  })
-}
-});
-
-      
-      
-      
-      
-      
-         
-      
-  
-      
-      
-      
-      
-      
-      
-      
+        
       
 
 
