@@ -236,7 +236,7 @@ client.on('message', message => {
 
 
  client.on('guildMemberAdd', member => {
-    let channel = member.guild.channels.find('name', '⸨𖤐مرحبا𖤐⸩');
+    let channel = member.guild.channels.find('name', '⸨مرحبا⸩');
     let memberavatar = member.user.avatarURL
       if (!channel) return;
     let embed = new Discord.RichEmbed()
