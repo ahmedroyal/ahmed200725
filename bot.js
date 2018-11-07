@@ -504,14 +504,7 @@ message.author.send(`**مدة الرابط : يـوم
 
 
 
-client.on("guildMemberAdd", member => {
-  member.createDM().then(function (channel) {
-  return channel.send(🌹  ولكم نورت السيرفر🌹 
-👑اسم العضو  ${member}👑
-👤 انت العضو رقم ${member.guild.memberCount}👤 
-🏁 تاريخ انضمامك للسيرفر ${member.joinedAt.toLocaleString()} 🏁) 
-}).catch(console.error)
-})
+
 
 
 client.login(process.env.BOT_TOKEN);
