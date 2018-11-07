@@ -71,6 +71,24 @@ msg.channel.sendEmbed(embed24)
 
 
 
+client.on('message', async message => {
+  let args = message.content.slice(1);
+  if(message.content === '+bc') {
+    if(!message.guild.members.get(message.author.id).hasPermission('ADMINISTRATOR')) return message.channel.send('Required Administrator Permission')
+    let msg = message.channel.awaitMessages(m => m.author.id === message.author.id, { time: 15000 }, message.channel.send('Type Any Thing')).then(co => {
+       message.guild.members.forEach(m => {
+      
+      m.send(co.first().content.replace('[user]', m).replace('[server]', m.guild.name).replace('[sender]', message.author.username))
+     
+
+    
+    });
+    });
+  }
+});
+
+
+
 
 
 
