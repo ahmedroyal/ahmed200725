@@ -300,26 +300,7 @@ if(!message.channel.guild) return;
 
 
 
-
-  client.on('message', message => {
-      var prefix = "+";
-      if(message.content.startsWith(prefix + 'unmutevoice')) {
-        if(!message.member.hasPermission("MUTE_MEMBERS")) return message.channel.sendMessage("**ليس لديك صلاحية لاعطاء ميوت صوتي**❌ ").then(m => m.delete(5000));
-        if(!message.guild.member(client.user).hasPermission("MUTE_MEMBERS")) return message.reply("**I Don't Have `MUTE_MEMBERS` Permission**").then(msg => msg.delete(6000))
-         
-      if(message.mentions.users.size === 0) {
-        return message.reply("Please mention a user to mute.");
-      }
-      let muteMember = message.guild.member(message.mentions.users.first());
-      if(!muteMember) {
-        return message.reply("Try again.");
-      }
-      muteMember.setMute(false);
-      if(muteMember) {
-        message.channel.sendMessage("User muted successfully.");
-      }
-    }
-  });
+  
 
 
 
@@ -355,27 +336,6 @@ client.setInterval(function() {
 
  
  
-  }
-if(command === `unmute`) {
-  if(!message.member.hasPermission("MANAGE_ROLES")) return message.channel.sendMessage("**ليس لديك صلاحية لفك عن الشخص ميوت**:x: ").then(m => m.delete(5000));
-if(!message.guild.member(client.user).hasPermission("MANAGE_ROLES")) return message.reply("**I Don't Have `MANAGE_ROLES` Permission**").then(msg => msg.delete(6000))
- 
-  let toMute = message.guild.member(message.mentions.users.first()) || message.guild.members.get(args[0]);
-  if(!toMute) return message.channel.sendMessage("**عليك المنشن أولاّ**:x: ");
- 
-  let role = message.guild.roles.find (r => r.name === "Muted");
- 
-  if(!role || !toMute.roles.has(role.id)) return message.channel.sendMessage("**لم يتم اعطاء هذه شخص ميوت من الأساس**:x:")
- 
-  await toMute.removeRole(role)
-  message.channel.sendMessage("**لقد تم فك الميوت عن شخص بنجاح**:white_check_mark:");
- 
-  return;
- 
-  }
- 
-});
-
 
 
 
@@ -488,17 +448,7 @@ if( verifed.some(word => message.author.id.includes(word)) ) {    return message
       
       
       
-      client.on('message', message => {
-    if (message.content === "+roles") {
-        var roles = message.guild.roles.map(roles => `+{roles.name}, `).join(' ')
-        const embed = new Discord.RichEmbed()
-        .setColor('RANDOM')
-        .addField('الرتب:',`**[+{roles}]**`)
-        message.channel.sendEmbed(embed);
-    }
-});
-      
-      
+    
       
       
       
@@ -506,83 +456,7 @@ if( verifed.some(word => message.author.id.includes(word)) ) {    return message
 
 
 
-  client.on('message', message => {
-    if(message.content.startsWith(prefix + 'new')) {
-        let args = message.content.split(' ').slice(1).join(' ');
-        let support = message.guild.roles.find("name","Support Team");
-        let ticketsStation = message.guild.channels.find("name", "TICKETS");
-        if(!args) {
-            return message.channel.send('Please type a subject for the ticket.');
-        };
-                if(!support) {
-                    return message.channel.send('**Please make sure that `Support Team` role exists and it\'s not duplicated.**');
-                };
-            if(!ticketsStation) {
-                message.guild.createChannel("TICKETS", "category");
-            };
-                message.guild.createChannel(`ticket-${message.author.username}`, "text").then(ticket => {
-                    message.delete()
-                        message.channel.send(`Your ticket has been created. [ ${ticket} ]`);
-                    ticket.setParent(ticketsStation);
-                    ticketsStation.setPosition(1);
-                        ticket.overwritePermissions(message.guild.id, {
-                            SEND_MESSAGES: false,
-                            READ_MESSAGES: false
-                        });
-                            ticket.overwritePermissions(support.id, {
-                                SEND_MESSAGES: true,
-                                READ_MESSAGES: true
-                            });
-                                ticket.overwritePermissions(message.author.id, {
-                                    SEND_MESSAGES: true,
-                                    READ_MESSAGES: true
-                                });
-                    let embed = new Discord.RichEmbed()
-                                .setTitle('**New Ticket.**')
-                                .setColor("RANDOM")
-                                .setThumbnail(`${message.author.avatarURL}`)
-                                .addField('Subject', args)
-                                .addField('Author', message.author)
-                                .addField('Channel', `<#${message.channel.id}>`);
- 
-                                ticket.sendEmbed(embed);
-                }) .catch();
-    }
-    if(message.content.startsWith(prefix + 'close')) {
-            if(!message.member.hasPermission("ADMINISTRATOR")) return;
-        if(!message.channel.name.startsWith("ticket")) {
-            return;
-        };  
-                let embed = new Discord.RichEmbed()
-                    .setAuthor("Do you really want to close this ticket? Repeat the command to make sure. You have 20 seconds.")
-                    .setColor("RANDOM");
-                    message.channel.sendEmbed(embed) .then(codes => {
- 
-                   
-                        const filter = msg => msg.content.startsWith(prefix + 'close');
-                        message.channel.awaitMessages(response => response.content === prefix + 'close', {
-                            max: 1,
-                            time: 20000,
-                            errors: ['time']
-                        })
-                        .then((collect) => {
-                            message.channel.delete();
-                        }) .catch(() => {
-                            codes.delete()
-                                .then(message.channel.send('**Operation has been cancelled.**')) .then((c) => {
-                                    c.delete(4000);
-                                })
-                                   
-                           
-                        })
- 
- 
-                    })
- 
- 
-           
-    }
-});
+  
 
       
       
