@@ -428,51 +428,207 @@ client.on("message", msg => {
 
     
 
+    client.on("message", message => {
+ if (message.content === "+help") {
+  const embed = new Discord.RichEmbed()
+      .setColor("RANDOM")
+      .setDescription(` ✧▬▬▬▬▬▬ Commands▬▬▬▬▬▬✧
+ 
++help | لمعرفة الاومر
+
+ +id | لمعرفة الايدي  حقك
+
+ +server  | سيرفر انفو
+
+ +clear  | يمسحلك الشات كلو
+
+ +avatar | يوريك الصور حقك
+
++ban | يباند الشخص 
+ 
+ +kick | يكيك الشخص
+ 
+ +mute  | امر الميوت فويس
+ 
+ +unmute | امر تشيل الميوت فويس
+
+ +bc | بردكاست
+ 
+ +bot-owner
+
+
+ 
+
+ 
+ ✧▬▬▬▬▬▬ Commands  ▬▬▬▬▬▬✧`)
+ .setFooter("By : ! NM Mody#7040 ")
+   message.channel.sendEmbed(embed)
+   
+   }
+   });
+
+
+
+
+
+
+
+
+
+client.on('message' , najzx => {
+    var prefix = "+";
+    let user = najzx.mentions.users.first()|| client.users.get(najzx.content.split(' ')[1])
+    if(najzx.content.startsWith(prefix + 'unban')) {
+        if(!najzx.member.hasPermission('ADMINISTRATOR')) return najzx.channel.send('❌|**\`ADMINISTRATOR\`لا توجد لديك رتبة`**');
+        if(!user) return  najzx.channel.send(`Do this ${prefix} <@ID user> \n or \n ${prefix}unban ID user`);
+        najzx.guild.unban(user);
+        najzx.guild.owner.send(`لقد تم فك الباند عن الشخص \n ${user} \n By : <@${najzx.author.id}>`)
+        var embed = new Discord.RichEmbed()
+        .setThumbnail(najzx.author.avatarURl)
+        .setColor("RANDOM")
+        .setTitle('**Unban** !')
+        .addField('**User Unban :** ', `${user}` , true)
+        .addField('**By :**' ,       ` <@${najzx.author.id}> ` , true)
+        .setAuthor(najzx.guild.name)
+       .setFooter('Requested by '+najzx.author.username, najzx.author.avatarURL)
+        najzx.channel.sendEmbed(embed)
+    }
+  });
+
+
+
 
 
 client.on('message', message => {
-    if (message.author.bot) return;
-     if (message.content === prefix + "help") {
-      if(!message.member.hasPermission('EMBED LINKS')) return      message.channel.send('**للأسف لا تمتلك صلاحية** `ADMINISTRATOR`' );
-     message.channel.send('**تم ارسال رسالة في الخاص**');
-
-
-
-
- message.author.sendMessage(`
- **
-[❖═════ General Commands ═══════❖]
-
- +id معلومات عن حسابك الشخصي
-
- +server معلومات حول السيرفر
-
- +clear مسح الرسائل الموجوده في الروم بعدد
-
- +avatar يعرض اك صورتك الشخصيةك
-
- 
-[❖═════ Administrator Commands ═══════❖]
-
- +ban soon
- 
- +kick soon
- 
- +mute soon
- 
- +unmute soon
-
- +bc رساله جماعيه
-[❖═════ Other ═══════❖]
-
- 
- +bot-owner رابط اضافة البوت
-
- **`);
-
-    }
+    if (message.content.startsWith("+bans")) {
+        message.guild.fetchBans()
+        .then(bans => message.channel.send(`${bans.size} عدد اشخاص المبندة من السيرفر `))
+  .catch(console.error);
+}
 });
+
+
+
+
+
+
  
+ client.on('message', message => {
+var prefix = "+";
+       if(message.content === prefix + "mutechat") {
+                           if(!message.channel.guild) return message.reply('** This command only for servers**');
+
+   if(!message.member.hasPermission('MANAGE_MESSAGES')) return message.reply(' **__ليس لديك صلاحيات__**');
+              message.channel.overwritePermissions(message.guild.id, {
+            SEND_MESSAGES: false
+
+              }).then(() => {
+                  message.reply("**__تم تقفيل الشات__ ✅ **")
+              });
+                }
+//FIRE BOT
+    if(message.content === prefix + "unchat") {
+                        if(!message.channel.guild) return message.reply('** This command only for servers**');
+
+   if(!message.member.hasPermission('MANAGE_MESSAGES')) return message.reply('**__ليس لديك صلاحيات__**');
+              message.channel.overwritePermissions(message.guild.id, {
+            SEND_MESSAGES: true
+
+              }).then(() => {
+                  message.reply("**__تم فتح الشات__✅**")
+              });
+    }
+       
+});
+
+
+
+
+
+
+
+
+client.on('message', message => {
+    var prefix = "+";
+if(!message.channel.guild) return;
+if(message.content.startsWith(prefix + 'move')) {
+ if (message.member.hasPermission("MOVE_MEMBERS")) {
+ if (message.mentions.users.size === 0) {
+ return message.channel.send("``لاستخدام الأمر اكتب هذه الأمر : " +prefix+ "move [USER]``")
+}
+if (message.member.voiceChannel != null) {
+ if (message.mentions.members.first().voiceChannel != null) {
+ var authorchannel = message.member.voiceChannelID;
+ var usermentioned = message.mentions.members.first().id;
+var embed = new Discord.RichEmbed()
+ .setTitle("Succes!")
+ .setColor("#000000")
+ .setDescription(`لقد قمت بسحب <@${usermentioned}> الى الروم الصوتي الخاص بك✅ `)
+var embed = new Discord.RichEmbed()
+.setTitle(`You are Moved in ${message.guild.name}`)
+ .setColor("RANDOM")
+.setDescription(`**<@${message.author.id}> Moved You To His Channel!\nServer --> ${message.guild.name}**`)
+ message.guild.members.get(usermentioned).setVoiceChannel(authorchannel).then(m => message.channel.send(embed))
+message.guild.members.get(usermentioned).send(embed)
+} else {
+message.channel.send("``لا تستطيع سحب "+ message.mentions.members.first() +" `يجب ان يكون هذه العضو في روم صوتي`")
+}
+} else {
+ message.channel.send("**``يجب ان تكون في روم صوتي لكي تقوم بسحب العضو أليك``**")
+}
+} else {
+message.react("❌")
+ }}});
+
+
+
+
+
+
+
+
+
+client.on('message', message => {
+    var prefix = "+"
+  if (message.author.x5bz) return;
+  if (!message.content.startsWith(prefix)) return;
+
+  let command = message.content.split(" ")[0];
+  command = command.slice(prefix.length);
+
+  let args = message.content.split(" ").slice(1);
+
+  if (command == "kick") {
+               if(!message.channel.guild) return message.reply('** This command only for servers**');
+         
+  if(!message.guild.member(message.author).hasPermission("KICK_MEMBERS")) return message.reply("**You Don't Have ` KICK_MEMBERS ` Permission**");
+  if(!message.guild.member(client.user).hasPermission("KICK_MEMBERS")) return message.reply("**I Don't Have ` KICK_MEMBERS ` Permission**");
+  let user = message.mentions.users.first();
+  let reason = message.content.split(" ").slice(2).join(" ");
+  if (message.mentions.users.size < 1) return message.reply("**منشن شخص**");
+  if(!reason) return message.reply ("**اكتب سبب الطرد**");
+  if (!message.guild.member(user)
+  .kickable) return message.reply("**لايمكنني طرد شخص اعلى من رتبتي يرجه اعطاء البوت رتبه عالي**");
+
+  message.guild.member(user).kick();
+
+  const kickembed = new Discord.RichEmbed()
+  .setAuthor(`KICKED!`, user.displayAvatarURL)
+  .setColor("RANDOM")
+  .setTimestamp()
+  .addField("**User:**",  '**[ ' + `${user.tag}` + ' ]**')
+  .addField("**By:**", '**[ ' + `${message.author.tag}` + ' ]**')
+  .addField("**Reason:**", '**[ ' + `${reason}` + ' ]**')
+  message.channel.send({
+    embed : kickembed
+  })
+}
+});
+
+
+
+
+
     
 
 client.login(process.env.BOT_TOKEN);
