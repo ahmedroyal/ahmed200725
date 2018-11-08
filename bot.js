@@ -385,8 +385,8 @@ client.on('message', message => {
 
 
  message.author.sendMessage(`
- 
-اسم بوتك
+
+Dark Systam
 Created By : ! NM Mody#7040
 bot link : https://discordapp.com/oauth2/authorize?client_id=507878859350474753 &scope=bot&permissions=388160
 `);
