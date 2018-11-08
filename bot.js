@@ -377,23 +377,16 @@ client.on("guildMemberAdd", member => {
 
 
 
-
 client.on('message', message => {
-      var prefix = "+"
-    if (message.author.bot) return;
-     if (message.content === prefix + "bot-owner") {
-
-
- message.author.sendMessage(`
-
-Dark Systam
-Created By : ! NM Mody#7040
-bot link : https://discordapp.com/oauth2/authorize?client_id=507878859350474753 &scope=bot&permissions=388160
-`);
-
-message.channel.send('**تم الارسال في الخاص**');
-
-    }
+  if (!message.content.startsWith(prefix)) return;
+  const verifed = ["478544778741678090"];
+if (message.content.startsWith(prefix + 'ownerbot')) {
+    if(!message.channel.guild) return;
+if( verifed.some(word => message.author.id.includes(word)) ) {    return message.channel.sendMessage("**:crown: انت صاحب البوت **")
+} else {
+   message.reply("**:rage: انت لست صاحب البوت**");   
+}
+}
 });
      
 
@@ -454,7 +447,7 @@ client.on("message", msg => {
 
  +bc | بردكاست
  
- +bot-owner
+ +ownerbot
 
 
  
