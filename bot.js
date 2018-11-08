@@ -6,7 +6,7 @@ const prefix = '+'
 
 client.on('ready', () => {
   console.log(`Logged in as ${client.user.tag}!`);
-client.user.setGame(`+SOON`,"http://twitch.tv/S-F")
+client.user.setGame(`+help`,"http://twitch.tv/S-F")
   console.log('')
   console.log('')
   console.log('╔[═════════════════════════════════════════════════════════════════]╗')
@@ -372,9 +372,84 @@ client.on("guildMemberAdd", member => {
 
 
 
+
+
+
+
+
+
+client.on('message', message => {
+      var prefix = "$"
+    if (message.author.bot) return;
+     if (message.content === prefix + "bot-owner") {
+
+
+ message.author.sendMessage(`
+ 
+اسم بوتك
+Created By : ! NM Mody#7040
+bot link : https://discordapp.com/oauth2/authorize?client_id=507878859350474753 &scope=bot&permissions=388160
+`);
+
+message.channel.send('**تم الارسال في الخاص**');
+
+    }
+});
      
 
 
 
+
+  client.on('message', message => { 
+  if (message.content.startsWith(prefix + 'help')) { /// And This is The Channel One Send The Help In Channel // Code By BlueBot Codes.
+      let pages = [`
++bot
++server
++bc <messge>
++clear <number>
++inv
++new اي شئ
+     `]
+   let page = 1;
+  
+      let embed = new Discord.RichEmbed()
+      .setColor('RANDOM')
+      .setFooter(`Page ${page} of ${pages.length}`)
+      .setDescription(pages[page-1])
+  
+      message.channel.sendEmbed(embed).then(msg => { 
+  
+          msg.react('◀').then( r => {
+              msg.react('▶')
+  
+             setTimeout(() => {
+          msg.delete
+      }, 60 * 1000)
+  
+          const backwardsFilter = (reaction, user) => reaction.emoji.name === '◀' && user.id === message.author.id;
+          const forwardsFilter = (reaction, user) => reaction.emoji.name === '▶' && user.id === message.author.id;
+  
+  
+          const backwards = msg.createReactionCollector(backwardsFilter, { time: 2000000});
+          const forwards = msg.createReactionCollector(forwardsFilter, { time: 2000000});
+  
+  
+  
+          backwards.on('collect', r => { 
+              if (page === 1) return;
+              page--;
+              embed.setDescription(pages[page-1]);
+              embed.setFooter(`Page ${page} of ${pages.length}`);
+              msg.edit(embed)
+          })
+          forwards.on('collect', r => {
+              if (page === pages.length) return;
+              page++;
+    
+
+
+
+ 
+    
 
 client.login(process.env.BOT_TOKEN);
