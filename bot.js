@@ -426,11 +426,74 @@ client.on("message", msg => {
 
 
 
+
+
+
+
+ client.on('message', message => {
+    if(message.content == '+member') {
+    const embed = new Discord.RichEmbed()
+    .setDescription(`**Members info🔋
+:green_heart: online:   ${message.guild.members.filter(m=>m.presence.status == 'online').size}
+:heart:dnd:       ${message.guild.members.filter(m=>m.presence.status == 'dnd').size}
+:yellow_heart: idle:      ${message.guild.members.filter(m=>m.presence.status == 'idle').size}   
+:black_heart: offline:   ${message.guild.members.filter(m=>m.presence.status == 'offline').size} 
+:blue_heart:   all:  ${message.guild.memberCount}**`)         
+         message.channel.send({embed});
+
+    }
+  });
+
+
+
+
  
     
 
 
 
+client.on('message', message => {
+    if (message.author.bot) return;
+     if (message.content === prefix + "help") {
+      if(!message.member.hasPermission('ADMINISTRATOR')) return      message.channel.send('**للأسف لا تمتلك صلاحية** `ADMINISTRATOR`' );
+     message.channel.send('**تم ارسال رسالة في الخاص**');
+
+
+
+
+ message.author.sendMessage(`
+ **
+[❖═════ General Commands ═══════❖]
+
+ +id معلومات عن حسابك الشخصي
+
+ +server معلومات حول السيرفر
+
+ +clear مسح الرسائل الموجوده في الروم بعدد
+
+ +avatar يعرض اك صورتك الشخصيةك
+
+ 
+[❖═════ Administrator Commands ═══════❖]
+
+ +ban soon
+ 
+ +kick soon
+ 
+ +mute soon
+ 
+ +unmute soon
+
+ +bc رساله جماعيه
+[❖═════ Other ═══════❖]
+
+ 
+ +bot-owner رابط اضافة البوت
+
+ **`);
+
+    }
+});
  
     
 
