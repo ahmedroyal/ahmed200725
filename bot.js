@@ -379,7 +379,7 @@ client.on("guildMemberAdd", member => {
 
 
 client.on('message', message => {
-      var prefix = "$"
+      var prefix = "+"
     if (message.author.bot) return;
      if (message.content === prefix + "bot-owner") {
 
