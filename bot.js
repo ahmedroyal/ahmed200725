@@ -933,9 +933,8 @@ client.on('voiceStateUpdate', (oldM, newM) => {
 
 
 
-
 client.on('guildMemberUpdate', (oldMember, newMember) => {
-    var logChannel = oldMember.guild.channels.find(c => c.name === '❮logs❯');
+    var logChannel = oldMember.guild.channels.find(c => c.name === 'log');
     if(!logChannel) return;
  
     oldMember.guild.fetchAuditLogs().then(logs => {
@@ -1005,7 +1004,7 @@ client.on('guildMemberUpdate', (oldMember, newMember) => {
     }
 });
 client.on('guildMemberAdd', member => {
-  var logChannel = member.guild.channels.find(c => c.name === '❮logs❯');
+  var logChannel = member.guild.channels.find(c => c.name === 'log');
   if(!logChannel) return;
  
   let newMember = new Discord.RichEmbed()
@@ -1025,7 +1024,7 @@ function Days(date) {
     return days + (days == 1 ? " day" : " days") + " ago";
 }
 client.on('guildMemberRemove', member => {
-  var logChannel = member.guild.channels.find(c => c.name === '❮logs❯');
+  var logChannel = member.guild.channels.find(c => c.name === 'log');
   if(!logChannel) return;
  
   let leaveMember = new Discord.RichEmbed()
@@ -1046,7 +1045,7 @@ client.on('voiceStateUpdate', (voiceOld, voiceNew) => {
     if(!voiceOld.guild.member(client.user).hasPermission('EMBED_LINKS')) return;
     if(!voiceOld.guild.member(client.user).hasPermission('VIEW_AUDIT_LOG')) return;
  
-    var logChannel = voiceOld.guild.channels.find(c => c.name === '❮logs❯');
+    var logChannel = voiceOld.guild.channels.find(c => c.name === 'log');
     if(!logChannel) return;
  
     voiceOld.guild.fetchAuditLogs().then(logs => {
@@ -1140,6 +1139,10 @@ client.on('voiceStateUpdate', (voiceOld, voiceNew) => {
         logChannel.send(voiceLeave);
     }
 });
+
+
+
+
 
 
     
