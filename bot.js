@@ -366,7 +366,9 @@ client.on("message", msg => {
 
 +ban | يباند الشخص 
  
- +kick | يكيك الشخص
+ +unban | يعني ازاله البان عن الشخص
+ 
++kick | يكيك الشخص
  
  +mute  | امر الميوت الكتابي
  
@@ -374,14 +376,22 @@ client.on("message", msg => {
 
  +bc | بردكاست
  
-+ownerbot لمعرفه اونر البوت
++ownerbot | لمعرفه اونر البوت
  
-+play soon
++play | soon
 
- +ticket لانشاء تذكراه خاصه فيك
+ +ticket | لانشاء تذكراه خاصه فيك
+  
+ +user | معلوماتك
+ 
+ +bans معرفه كام شحص متبند
+  
+ +image | لعرض شعار السيرفر 
+ 
  
 
- 
+
+
  ✧▬▬▬▬▬▬ Commands  ▬▬▬▬▬▬✧`)
  .setFooter("By : ! NM Mody#7040 ")
    message.channel.sendEmbed(embed)
@@ -1190,6 +1200,33 @@ client.on('message', message => {
     .setThumbnail(heg.avatarURL);
     message.channel.send(id)
 }       });
+
+
+
+
+
+
+
+
+
+client.on("message", message => {
+    const prefix = "+"
+              
+          if(!message.channel.guild) return;
+   if(message.author.bot) return;
+      if(message.content === "+image"){ 
+          const embed = new Discord.RichEmbed()
+  
+      .setTitle(`هذا هو شعار سيرفر ** ${message.guild.name} **`)
+  .setAuthor(message.author.username, message.guild.iconrURL)
+    .setColor("PURPLE")
+    .setImage(message.guild.iconURL)
+    .setURL(message.guild.iconrURL)
+                    .setTimestamp()
+
+   message.channel.send({embed});
+      }
+  });
 
 
 
