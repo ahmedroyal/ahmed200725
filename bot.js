@@ -868,4 +868,61 @@ client.on('message', message => {
 
 
 
+
+
+
+
+
+
+client.on('voiceStateUpdate', (oldM, newM) => {
+  let example1 = oldM.serverMute;
+  let example2 = newM.serverMute;
+  let exam1 = oldM.serverDeaf;
+  let exam2 = newM.serverDeaf;
+  let channel = oldM.guild.channels.find('name', 'log-mute-and-defand')
+  if(!channel) return;
+    oldM.guild.fetchAuditLogs()
+    .then(logs => {
+      let user = logs.entries.first().executor.username
+    if(example1 === false && example2 === true) {
+       let embed = new Discord.RichEmbed()
+       .setAuthor(`${newM.user.tag}`, newM.user.avatarURL)
+       .setDescription(`${newM} تم إعطآئه ميوت صوتي`)
+       .setFooter(`بواسطه : ${user}`)
+        .setColor('#36393e')
+       channel.send(embed)
+    }
+    if(example1 === true && example2 === false) {
+       let embed = new Discord.RichEmbed()
+       .setAuthor(`${newM.user.tag}`, newM.user.avatarURL)
+       .setDescription(`${newM} تم فك الميوت الصوتي `)
+       .setFooter(`بواسطه : ${user}`)
+        .setColor('#36393e')
+       .setTimestamp()
+       channel.send(embed)
+    }
+    if(exam1 === false && exam2 === true) {
+       let embed = new Discord.RichEmbed()
+       .setAuthor(`${newM.user.tag}`, newM.user.avatarURL)
+       .setDescription(`${newM} تم إعطآئه ديفن أو سمآعهه`)
+       .setFooter(`بوآسطه : ${user}`)
+        .setColor('#36393e')
+       .setTimestamp()
+       channel.send(embed)
+    }
+    if(exam1 === true && exam2 === false) {
+       let embed = new Discord.RichEmbed()
+       .setAuthor(`${newM.user.tag}`, newM.user.avatarURL)
+       .setDescription(`${newM} تم فك عنهه الديفن أو السمآعهه`)
+       .setFooter(`بوآسطه : ${user}`)
+        .setColor('#36393e')
+       .setTimestamp()
+       channel.send(embed)
+    }
+  })
+});
+
+
+
+
 client.login(process.env.BOT_TOKEN);
