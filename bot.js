@@ -1221,6 +1221,39 @@ client.on("message", message => {
 
 
 
+  console.log(`Logged in as ${client.user.tag}!`);
+  });
+
+client.on('message', msg => {
+  if (msg.content === 'ping') {
+    msg.reply('Pong!');
+  }
+});
+
+
+
+
+
+
+client.on('ready', async() => {
+var server = "510901274783514645"; // ايدي السررفر
+var channel = "510901274783514647";//ايدي الروم
+    setInterval(()=>{
+    client.guilds.get(server).channels.get(channel).send('**كودزكودزكودزكودزكودزكودزكودزكودزكودزكودزكودزكودزكودزكودزكودزكودزكودزكودزكودزكودزكودزكودزكودزكودزكودزكودزكودزكودزكودزكودزكودزكودزكودزكودزكودزكودزكودزكودزكودزكودزكودزكودزكودزكودزكودزكودزكودزكودزكودزكودزكودزكودزكودزكودزكودزكودزكودزكودزكودزكودزكودزكودزكودزكودزكودزكودزكودزكودزكودزكودزكودزكودز **')
+    },305);
+})
+
+
+
+
+
+
+
+
+client.login("NTEwNTcwNTE1OTQyMDgwNTQz.DsjGlg._VonRmuVmI6eCZhG74_dVfRI-qk");
+
+
+
 
 
 
