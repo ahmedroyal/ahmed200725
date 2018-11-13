@@ -36,7 +36,13 @@ client.user.setGame(`Mhelp`,"http://twitch.tv/S-F")
 
 
 
+
+
+
+
 const Discord = require('discord.js');
+
+const Util = require('discord.js');
 
 const getYoutubeID = require('get-youtube-id');
 
@@ -56,7 +62,7 @@ const gif = require("gif-search");
 
 const client = new Discord.Client({disableEveryone: true});
 
-const prefix = "M";
+const prefix = "~";
 /////////////////////////
 ////////////////////////
 
@@ -385,7 +391,7 @@ client.on('ready', () => {
       console.log(`ON ${client.guilds.size} Servers '     Script By : EX Clan ' `);
     console.log(`----------------`);
   console.log(`Logged in as ${client.user.tag}!`);
-client.user.setGame(`iiM0dy_EG | Last Music`,"http://twitch.tv/Death Shop")
+client.user.setGame(`1play | Last Music`,"http://twitch.tv/Death Shop")
 client.user.setStatus("dnd")
 });
 
