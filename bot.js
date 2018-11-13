@@ -38,7 +38,6 @@ client.user.setGame(`Mhelp`,"http://twitch.tv/S-F")
 
 const Discord = require('discord.js');
 
-const Util = require('discord.js');
 
 const getYoutubeID = require('get-youtube-id');
 
