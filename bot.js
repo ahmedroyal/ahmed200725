@@ -637,7 +637,7 @@ let embed = new Discord.RichEmbed()
      .addField("📜Name + Tag📜", msg.author.tag, true)
      .setThumbnail(msg.author.avatarURL)
      .addField('Your ID', msg.author.id, true)
-     .addField('📆Account Created At📆',${moment(msg.author.createdAt).format('D/M/YYYY h:mm a')} **\n** \${moment(msg.author.createdAt).fromNow()}``, true)
+ 
      .setFooter(msg.guild.name, msg.guild.iconURL, true)
      msg.channel.sendEmbed(embed);
     }
