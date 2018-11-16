@@ -299,4 +299,189 @@ if(command === `unmute`) {
 }); //alpha codes
  //alpha codes
 
+
+
+
+
+
+
+client.on('message', message =>{
+    let args = message.content.split(' ');
+    if(args[0] === `${prefix}avatar`){
+        let mentions = message.mentions.members.first()
+        if(!mentions) {
+          let sicon = message.author.avatarURL
+          let embed = new Discord.RichEmbed()
+          .setImage(message.author.avatarURL)
+          .setColor("#f7abab") 
+          .setDescription(`**${message.author.username}#${message.author.discriminator}**'s avatar :`);
+          message.channel.send({embed})
+        } else {
+          let sicon = mentions.user.avatarURL
+          let embed = new Discord.RichEmbed()
+          .setColor("#f7abab")
+          .setDescription(`**${mentions.user.username}#${mentions.user.discriminator}**'s avatar :`)
+          .setImage(sicon)
+          message.channel.send({embed})
+        }
+    };
+});
+
+
+
+
+
+
+
+
+
+
+
+client.on ('message', Sal => { //By Salto7#4595
+  if (Sal.content ===  'الله يلعن امك') { 
+    Sal.reply('لا تسب').then(sb => {  
+    Sal.delete(30)
+   sb.delete(1200);
+      
+  })
+  }
+});
+
+client.on ('message', Sal => { //By Salto7#4595
+  if (Sal.content ===  'كل خرا') { 
+    Sal.reply('لا تسب').then(sb => {  
+    Sal.delete(30)
+   sb.delete(1200);
+      
+  })
+  }
+});
+
+client.on ('message', Sal => { //By Salto7#4595
+  if (Sal.content ===  'كل زق') { 
+    Sal.reply('لا تسب').then(sb => {  
+    Sal.delete(30)
+   sb.delete(1200);
+      
+  })
+  }
+});
+
+client.on ('message', Sal => { //By Salto7#4595
+  if (Sal.content ===  'كس امك') { 
+    Sal.reply('لا تسب').then(sb => {  
+    Sal.delete(30)
+   sb.delete(1200);
+      
+  })
+  }
+});
+
+client.on ('message', Sal => { //By Salto7#4595
+  if (Sal.content ===  'الله يلعن ابوك') { 
+    Sal.reply('لا تسب').then(sb => {  
+    Sal.delete(30)
+   sb.delete(1200);
+      
+  })
+  }
+});
+
+
+
+
+client.on ('message', Sal => { //By Salto7#4595
+  if (Sal.content ===  'يابن الشروموطه') { 
+    Sal.reply('لا تسب').then(sb => {  
+    Sal.delete(30)
+   sb.delete(1200);
+      
+  })
+  }
+});
+
+
+
+
+client.on ('message', Sal => { //By Salto7#4595
+  if (Sal.content ===  'يايبن المتناكه') { 
+    Sal.reply('لا تسب').then(sb => {  
+    Sal.delete(30)
+   sb.delete(1200);
+      
+  })
+  }
+});
+
+
+
+
+
+
+client.on('message', message => {
+         if(message.content === prefix + "closeroom") {
+                             if(!message.channel.guild) return message.reply('** This command only for servers**');
+  
+     if(!message.member.hasPermission('MANAGE_MESSAGES')) return message.reply(' **__ليس لديك صلاحيات__**');
+                message.channel.overwritePermissions(message.guild.id, {
+              SEND_MESSAGES: false
+  
+                }).then(() => {
+                    message.reply("**__تم تقفيل الشات__ :white_check_mark: **")
+                });
+                  }
+      if(message.content === prefix + "openroom") {
+                          if(!message.channel.guild) return message.reply('** This command only for servers**');
+  
+     if(!message.member.hasPermission('MANAGE_MESSAGES')) return message.reply('**__ليس لديك صلاحيات__**');
+                message.channel.overwritePermissions(message.guild.id, {
+              SEND_MESSAGES: true
+  
+                }).then(() => {
+                    message.reply("**__تم فتح الشات__:white_check_mark:**")
+                });
+      }
+         
+});
+client.on('message', message => {
+  if(message.content.includes('discord.gg')){
+                                          if(!message.channel.guild) return message.reply('** advertising me on DM ? :thinking:   **');
+      if (!message.member.hasPermissions(['ADMINISTRATOR'])){
+      message.delete()
+  return message.reply(`** Not allowed to advertising Here :angry: ! **`)
+  }
+}
+});
+
+
+
+
+
+
+
+
+
+
+client.on('message', message => {
+              if (!message.channel.guild) return;
+      if(message.content =='$members')
+      var IzRo = new Discord.RichEmbed()
+      .setThumbnail(message.author.avatarURL)
+      .setFooter(message.author.username, message.author.avatarURL) 
+      .setTitle(':tulip:| Members info')
+      .addBlankField(true)
+      .addField(':green_book:| Online ',
+      `${message.guild.members.filter(m=>m.presence.status == 'online').size}`)
+      .addField(':closed_book:|  Dnd ',`${message.guild.members.filter(m=>m.presence.status == 'dnd').size}`)
+      .addField(':orange_book:| Idle',`${message.guild.members.filter(m=>m.presence.status == 'idle').size}`)
+      .addField(':notebook:| Offline',`${message.guild.members.filter(m=>m.presence.status == 'offline').size}`)
+      .addField('Member Server Count',`${message.guild.memberCount}`)
+      message.channel.send(IzRo);
+    });
+
+
+
+
+
+
 client.login(process.env.BOT_TOKEN);
