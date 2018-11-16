@@ -40,28 +40,25 @@ client.user.setGame(`Trees Codes`,"http://twitch.tv/S-F")
 
 
 client.on("message", message => {
-var prefix = "$" // البريفكس
-    var args = message.content.substring(prefix.length).split(" ");
-    if (message.content.startsWith(prefix + "clear")) { // الامر
-        if(!message.channel.guild) return message.reply('**:x: اسف لكن هذا الامر للسيرفرات فقط **');         
-if(!message.member.hasPermission('MANAGE_MESSAGES')) return message.reply('**⚠  لا يوجد لديك صلاحية لمسح الشات**');
-var msg;
-msg = parseInt();
-
-message.channel.fetchMessages({limit: msg}).then(messages => message.channel.bulkDelete(messages)).catch(console.error);
-message.channel.sendMessage("", {embed: {
-title: "``تــم مسح الشات ``",
-color: 0x06DF00,
-footer: {
+              var args = message.content.substring(prefix.length).split(" ");
+              if (message.content.startsWith(prefix + "clear")) {
+                  if(!message.channel.guild) return message.reply('**❌ اسف لكن هذا الامر للسيرفرات فقط **');         
+     if(!message.member.hasPermission('MANAGE_MESSAGES')) return message.reply('**⚠  لا يوجد لديك صلاحية لمسح الشات**');
+          var msg;
+          msg = parseInt();
+        
+        message.channel.fetchMessages({limit: msg}).then(messages => message.channel.bulkDelete(messages)).catch(console.error);
+        message.channel.sendMessage("", {embed: {
+          title: "``تــم مسح الشات ``",
+          color: 0x06DF00,
+          footer: {
+            
+          }
+        }}).then(msg => {msg.delete(10000)});
+                            }
   
-}
-}}).then(msg => {msg.delete(3000)});
-                  }
-
-
-}); 
-
-
+       
+  });
 
 
 
@@ -559,6 +556,123 @@ client.on("message", message => {
 
 
 
+
+
+
+
+
+client.on("message", msg => {
+var prefix = '$';// البرفكس
+var m = msg.guild.name
+var d = msg.guild.memberCount
+var p = msg.guild.roles.size
+var c = msg.guild.channels.size
+var l = msg.guild.region
+var o = msg.guild.iconURL
+var k = msg.guild.owner
+var i = msg.guild.emojis.size
+var b = msg.guild.members.filter(m => m.user.bot).size
+var h = d - b
+var cre = `${moment(msg.guild.createdAt).format('D/M/YYYY h:mm a')} **\n** \`${moment(msg.guild.createdAt).fromNow()}\``
+var t = msg.guild.channels.filter(e => e.type === "text")
+var v = msg.guild.channels.filter(e => e.type === "voice")
+var pow = msg.guild.verificationLevel
+var e = msg.guild.emojis.size
+var e2 = msg.guild.emojis.array()
+var afk = msg.guild.afkChannel
+var ID = msg.guild.id
+if (msg.content.startsWith(prefix + "servers")){// الامر
+var embed = new Discord.RichEmbed()
+.setColor("RANDOM")
+.setThumbnail(o)
+.addField("👑**Owner**👑⤵", k, true)
+.addField("📜**Name**📜⤵", m, true)
+.addField("🆔**ID**🆔⤵", ID, true)
+.addField("👥**MembersAll**🤖⤵", d, true)
+.addField("📕**Roles**📕⤵", p, true)
+.addField("📕**Channels**📕⤵", c, true)
+.addField("🌐**Region**🌐⤵", l, true)
+.addField("🤖**Bots**🤖⤵", b, true)
+.addField("👥**Humans**👥⤵", h, true)
+.addField("📝**TextRooms**📝⤵", `${t.size}`, true)
+.addField("🔒**verificationLevel**🔒➥", pow, true)
+.addField("🎤**VoiceRooms**🎤⤵", `${v.size}`, true)
+.addField("📆Created At📆⤵", cre,true)
+.addField("🛏AFKRoom🛏⤵", afk, true)
+msg.channel.sendEmbed(embed);
+}
+});
+
+
+
+
+
+
+
+
+client.on('message', (message) => {
+    if (message.content.startsWith('$kick')) {
+        var member= message.mentions.members.first();
+        member.kick().then((member) => {
+            message.channel.send(member.displayName + ' تم طرد هذا الشخص من السيرفر');
+        }).catch(() => {
+            message.channel.send("❌");
+        });
+    }
+});
+
+
+
+
+
+
+
+const moment = reqiure("moment");
+client.on("message", msg => {
+var prefix = "$"//البرفكس
+    if (msg.content.startsWtih(prefix + "id")) {
+let embed = new Discord.RichEmbed()
+     .setColor("RANDOM")
+     .setAuthor(msg.author.username, msg.author.avatarURL)
+     .setTitle('👥Your Information👥')
+     .addField("📜Name + Tag📜", msg.author.tag, true)
+     .setThumbnail(msg.author.avatarURL)
+     .addField('Your ID', msg.author.id, true)
+     .addField('📆Account Created At📆',${moment(msg.author.createdAt).format('D/M/YYYY h:mm a')} **\n** \${moment(msg.author.createdAt).fromNow()}``, true)
+     .setFooter(msg.guild.name, msg.guild.iconURL, true)
+     msg.channel.sendEmbed(embed);
+    }
+  });
+
+
+
+
+
+
+
+
+
+const moment = require('moment');
+var prefix = "$";//البرفكس
+
+client.on('message', msg => {
+ if(msg.content.startsWith(prefix + "bot")) {
+let embed24 = new Discord.RichEmbed()   
+   .setThumbnail(client.user.avatarURL)
+   .setColor("RANDOM")  
+   .setTitle(`🤖**Information about**🤖 || ${client.user.tag}`, true)
+   .addField("📜**Name + Tag**📜", client.user.tag, true)
+   .addField(`***Prefix Bot***`,`**${prefix}**`, true)
+   .addField("🤖**Bot Join Servers**🤖", client.guilds.size, true)
+   .addField("👥**Sender**👥", msg.author.tag, true)
+   .addField("🤖🆔 *Bot ID** 🆔🤖 ", client.user.id, true)
+   .addField("📆**Bot Created At**📆", `${moment(client.user.createdAt).format('D/M/YYYY h:mm a')} **\n** \`${moment(client.user.createdAt).fromNow()}\``, true)
+   .addField("🤖**User**🤖", client.users.size, true)
+  
+   .setFooter(`${msg.author.tag}`, `${msg.author.avatarURL}`, true)
+msg.channel.sendEmbed(embed24)
+}
+ });
 
 
 
