@@ -502,4 +502,64 @@ client.on("message", message => {
 
 
 
+
+
+
+
+
+
+const HeRo = new Discord.Client();
+client.on('message', message => {
+var prefix = "$";
+
+    if (message.content === prefix + "date") {
+        if (!message.channel.guild) return message.reply('** This command only for servers **');  
+        var currentTime = new Date(),
+            Year = currentTime.getFullYear(),
+            Month = currentTime.getMonth() + 1,
+            Day = currentTime.getDate();
+
+            var Date15= new Discord.RichEmbed()
+            .setTitle("**!~[ التاريخ ]~! **")
+            .setColor('RANDOM')
+            .setTimestamp()
+            .setDescription( ""+ Day + "-" + Month + "-" + Year + "")
+             message.channel.sendEmbed(Date15);
+    }
+});
+
+
+
+
+
+
+
+client.on("message", message => {
+    const prefix = "$"
+              
+          if(!message.channel.guild) return;
+   if(message.author.bot) return;
+      if(message.content === "$image"){ 
+          const embed = new Discord.RichEmbed()
+  
+      .setTitle(`هذا هو شعار سيرفر ** ${message.guild.name} **`)
+  .setAuthor(message.author.username, message.guild.iconrURL)
+    .setColor("PURPLE")
+    .setImage(message.guild.iconURL)
+    .setURL(message.guild.iconrURL)
+                    .setTimestamp()
+
+   message.channel.send({embed});
+      }
+  });
+
+
+
+
+
+
+
+
+
+
 client.login(process.env.BOT_TOKEN);
