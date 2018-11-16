@@ -416,7 +416,7 @@ client.on ('message', Sal => { //By Salto7#4595
 
 
 client.on('message', message => {
-         if(message.content === prefix + "closeroom") {
+         if(message.content === prefix + "mutechat") {
                              if(!message.channel.guild) return message.reply('** This command only for servers**');
   
      if(!message.member.hasPermission('MANAGE_MESSAGES')) return message.reply(' **__ليس لديك صلاحيات__**');
@@ -427,7 +427,7 @@ client.on('message', message => {
                     message.reply("**__تم تقفيل الشات__ :white_check_mark: **")
                 });
                   }
-      if(message.content === prefix + "openroom") {
+      if(message.content === prefix + "unchat") {
                           if(!message.channel.guild) return message.reply('** This command only for servers**');
   
      if(!message.member.hasPermission('MANAGE_MESSAGES')) return message.reply('**__ليس لديك صلاحيات__**');
@@ -545,24 +545,47 @@ client.on("message", message => {
 
 
 
-client.on('message', async function (message)  {
-if(message.content.startsWith(prefix+"server")) {
-const vlevel = ['None', 'Low (Must have verified email)', 'Medium (Must be register for 5 mineuts)', 'High (Need to wait 10 minutes)', 'Very High (Need verified phone on account)']
-const members = await message.guild.members.filter(m=> m.presence.status === 'online').size + message.guild.members.filter(m=> m.presence.status === 'idle').size + message.guild.members.filter(m=> m.presence.status === 'dnd').size  
-message.channel.send(new discord.RichEmbed() 
-.setAuthor(`${message.guild.name} [Server Icon URL]`, message.guild.iconURL)
-.setURL(message.guild.iconURL)
-.addField('🆔 ايدي السيرفر', message.guild.id, true)
-.addField('👑 اونر السيرفر', message.guild.owner, true)
-.addField('🗺 منطقة', message.guild.region, true)
-.addField(`👥 الاعضاء [${message.guild.memberCount}]`, `${members} online` ,true)
-.addField(`💬 القنوات`, `**${message.guild.channels.filter(c => c.type === 'category').size}** الاقسام | **${message.guild.channels.filter(c=> c.type === 'text').size}**روم كتابي | **${message.guild.channels.filter(c=> c.type === 'voice').size}** روم صوتي` ,true)
-.addField(`💠 مستوى التحقق`, vlevel[message.guild.verificationLevel] ,true)
-.addField(`👔 الرتب`, message.guild.roles.size ,true)
-.addField(`📆 تم انشأوها`, message.guild.createdAt ,true)
-)
+client.on("message", msg => {
+var prefix = '$';// البرفكس
+var m = msg.guild.name
+var d = msg.guild.memberCount
+var p = msg.guild.roles.size
+var c = msg.guild.channels.size
+var l = msg.guild.region
+var o = msg.guild.iconURL
+var k = msg.guild.owner
+var i = msg.guild.emojis.size
+var b = msg.guild.members.filter(m => m.user.bot).size
+var h = d - b
+var cre = `${moment(msg.guild.createdAt).format('D/M/YYYY h:mm a')} **\n** \`${moment(msg.guild.createdAt).fromNow()}\``
+var t = msg.guild.channels.filter(e => e.type === "text")
+var v = msg.guild.channels.filter(e => e.type === "voice")
+var pow = msg.guild.verificationLevel
+var e = msg.guild.emojis.size
+var e2 = msg.guild.emojis.array()
+var afk = msg.guild.afkChannel
+var ID = msg.guild.id
+if (msg.content.startsWith(prefix + "servers")){// الامر
+var embed = new Discord.RichEmbed()
+.setColor("RANDOM")
+.setThumbnail(o)
+.addField("👑**Owner**👑⤵", k, true)
+.addField("📜**Name**📜⤵", m, true)
+.addField("🆔**ID**🆔⤵", ID, true)
+.addField("👥**MembersAll**🤖⤵", d, true)
+.addField("📕**Roles**📕⤵", p, true)
+.addField("📕**Channels**📕⤵", c, true)
+.addField("🌐**Region**🌐⤵", l, true)
+.addField("🤖**Bots**🤖⤵", b, true)
+.addField("👥**Humans**👥⤵", h, true)
+.addField("📝**TextRooms**📝⤵", `${t.size}`, true)
+.addField("🔒**verificationLevel**🔒➥", pow, true)
+.addField("🎤**VoiceRooms**🎤⤵", `${v.size}`, true)
+.addField("📆Created At📆⤵", cre,true)
+.addField("🛏AFKRoom🛏⤵", afk, true)
+msg.channel.sendEmbed(embed);
 }
-})
+});
 
 
 
@@ -1626,7 +1649,10 @@ client.on('message', msg => {//iiM0dy_EG#7040
  ❖  $unmute <mention> ➾ unmute member
  ❖  $bc <message> ➾ message all members in server
  ❖  $clear ➾ Clears the chat
- ❖   __soon__
+ ❖ $unban ➾ unban member frome server
+ ❖ $mutechat ➾ Mute Chat
+ ❖ $unchat ➾ Open Chat
+ ❖   __soon__ 
  ❖   __soon__
 ╔[❖══════ஜ۩۞۩ஜ══════❖]╗
    General  ✻ Commands
@@ -1640,7 +1666,6 @@ client.on('message', msg => {//iiM0dy_EG#7040
 ❖ $user ➾ to see your user // عشان تشوف اليوسر حقك
 ❖ $اقتراح 
 ❖ $inv➾رابط البوت
-❖$topinvite➾ لرويه اكثر واحد جاب invite 
 ==================================================================
 Server support : Soon!!
 ==================================================================
