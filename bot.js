@@ -177,7 +177,7 @@ client.on('message',async message => {
 
 
 
-const moment = reqiure("moment");
+
 client.on("message", msg => {
 var prefix = "$"//البرفكس
     if (msg.content.startsWtih(prefix + "id")) {
