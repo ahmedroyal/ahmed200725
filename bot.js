@@ -1849,7 +1849,6 @@ if (message.content.startsWith(prefix + 'mypoints')) {
 	let embed = new Discord.RichEmbed()
     .setAuthor(`${message.author.tag}`, message.author.avatarURL)
 	.setColor('#000000')
-	.setDescription(`\`${userData.points}`\ : نقاطك`)
 	message.channel.sendEmbed(embed)
   }
   fs.writeFile("./points.json", JSON.stringify(points), (err) => {
