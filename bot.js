@@ -627,7 +627,6 @@ client.on('message', (message) => {
 
 
 
-const moment = reqiure("moment");
 client.on("message", msg => {
 var prefix = "$"//البرفكس
     if (msg.content.startsWtih(prefix + "id")) {
@@ -652,7 +651,7 @@ let embed = new Discord.RichEmbed()
 
 
 
-const moment = require('moment');
+
 var prefix = "$";//البرفكس
 
 client.on('message', msg => {
