@@ -1825,7 +1825,7 @@ msg.channel.send({embed: embed})
 
 
 
-const client = new Discord.Client();
+
 
 
 
