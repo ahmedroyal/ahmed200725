@@ -546,47 +546,27 @@ client.on("message", message => {
 
 
 
+client.on('message', function(msg) {
+    const prefix = '+'
+    if(msg.content.startsWith ('$server')) {
+      let embed = new Discord.RichEmbed()
+      .setColor('RANDOM')
+      .setThumbnail(msg.guild.iconURL)
+      .setTitle(`Showing Details Of  **${msg.guild.name}*`)
+      .addField('🌐** server type**',`[** __${msg.guild.region}__ **]`,true)
+      .addField('🏅** __Roles__**',`[** __${msg.guild.roles.size}__ **]`,true)
+      .addField('🔴**__ Members Number__**',`[** __${msg.guild.memberCount}__ **]`,true)
+      .addField('🔵**__ Members Number who online__**',`[** __${msg.guild.members.filter(m=>m.presence.status == 'online').size}__ **]`,true)
+      .addField('📝**__ Text Channels__**',`[** __${msg.guild.channels.filter(m => m.type === 'text').size}__** ]`,true)
+      .addField('🎤**__ voice Channels__**',`[** __${msg.guild.channels.filter(m => m.type === 'voice').size}__ **]`,true)
+      .addField('👑**__ The Owner__**',`**${msg.guild.owner}**`,true)
+      .addField('🆔**__ Server ID__**',`**${msg.guild.id}**`,true)
+      .addField('📅**__The date when the server created __**',msg.guild.createdAt.toLocaleString())
+      msg.channel.send({embed:embed});
+    }
+  });
 
-client.on("message", msg => {
-var prefix = '$';// البرفكس
-var m = msg.guild.name
-var d = msg.guild.memberCount
-var p = msg.guild.roles.size
-var c = msg.guild.channels.size
-var l = msg.guild.region
-var o = msg.guild.iconURL
-var k = msg.guild.owner
-var i = msg.guild.emojis.size
-var b = msg.guild.members.filter(m => m.user.bot).size
-var h = d - b
-var cre = `${moment(msg.guild.createdAt).format('D/M/YYYY h:mm a')} **\n** \`${moment(msg.guild.createdAt).fromNow()}\``
-var t = msg.guild.channels.filter(e => e.type === "text")
-var v = msg.guild.channels.filter(e => e.type === "voice")
-var pow = msg.guild.verificationLevel
-var e = msg.guild.emojis.size
-var e2 = msg.guild.emojis.array()
-var afk = msg.guild.afkChannel
-var ID = msg.guild.id
-if (msg.content.startsWith(prefix + "servers")){// الامر
-var embed = new Discord.RichEmbed()
-.setColor("RANDOM")
-.setThumbnail(o)
-.addField("👑**Owner**👑⤵", k, true)
-.addField("📜**Name**📜⤵", m, true)
-.addField("🆔**ID**🆔⤵", ID, true)
-.addField("👥**MembersAll**🤖⤵", d, true)
-.addField("📕**Roles**📕⤵", p, true)
-.addField("📕**Channels**📕⤵", c, true)
-.addField("🌐**Region**🌐⤵", l, true)
-.addField("🤖**Bots**🤖⤵", b, true)
-.addField("📝**TextRooms**📝⤵", `${t.size}`, true)
-.addField("🔒**verificationLevel**🔒➥", pow, true)
-.addField("🎤**VoiceRooms**🎤⤵", `${v.size}`, true)
-.addField("📆Created At📆⤵", cre,true)
-.addField("🛏AFKRoom🛏⤵", afk, true)
-msg.channel.sendEmbed(embed);
-}
-});
+
 
 
 
@@ -1636,23 +1616,21 @@ Server support : Soon!!
 
 
 
-
-client.on("message", msg => {
-var prefix = "$"//البرفكس
-    if (msg.content.startsWtih(prefix + "id")) {    
-let embed = new Discord.RichEmbed()
-     .setColor("RANDOM")
-     .setAuthor(msg.author.username, msg.author.avatarURL)
-     .setTitle('👥**Your Information**👥')
-     .addField("📜**Name + Tag**📜", msg.author.tag, true)     
-     .setThumbnail(msg.author.avatarURL)
-     .addField('**Your ID**', msg.author.id, true)
-     .setFooter(msg.guild.name, msg.guild.iconURL, true)
-     msg.channel.sendEmbed(embed);
+client.on('message', message => {
+   if (message.content === "$id") {
+   let embed = new Discord.RichEmbed()
+  .setColor("RANDOM")
+  .setThumbnail(message.author.avatarURL)
+  .addField("Name:",`${message.author.username}`, true)
+  .addField('Discrim:',"#" +  message.author.discriminator, true)
+  .addField("ID:", message.author.id, true)
+  .addField("Create At:", message.author.createdAt, true)
+     
+     
+  message.channel.sendEmbed(embed);
     }
-  });
-
-
+});
+  
 
 
 
@@ -1686,6 +1664,9 @@ client.on('message' , async (message) => {
     message.channel.send(embed)
     }
 });
+
+
+
 
 
 
