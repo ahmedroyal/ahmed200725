@@ -495,7 +495,7 @@ client.on("message", message => {
   message.guild.members.filter(m => m.presence.status !== 'all').forEach(m => {
 
 })
- message.channel.send(\${message.guild.members.filter(m => m.presence.status !== 'all').size}` : عدد الاعضاء المستلمين`); 
+ 
  message.delete(); 
 };     
 });
