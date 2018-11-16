@@ -2244,10 +2244,11 @@ message.channel.sendEmbed(sh);
     })
     spee[id] = (new Date).getTime()
 }
-});
+
 		
 		
 		
+
 
 
 
