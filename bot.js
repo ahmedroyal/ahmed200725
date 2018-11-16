@@ -178,34 +178,6 @@ client.on('message',async message => {
 
 
 
-client.on("message", msg => {
-var prefix = "$"//البرفكس
-    if (msg.content.startsWtih(prefix + "id")) {
-let embed = new Discord.RichEmbed()
-     .setColor("RANDOM")
-     .setAuthor(msg.author.username, msg.author.avatarURL)
-     .setTitle('👥Your Information👥')
-     .addField("📜Name + Tag📜", msg.author.tag, true)
-     .setThumbnail(msg.author.avatarURL)
-     .addField('Your ID', msg.author.id, true)
-  
-       
-     .setFooter(msg.guild.name, msg.guild.iconURL, true)
-     msg.channel.sendEmbed(embed);
-    }
-  });
-
-
-
-
-
-
-
-
-
-
-
-
 client.on('message', message =>{
     let messageArray = message.content.split(" ");
     let cmd = messageArray[0];
