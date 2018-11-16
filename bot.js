@@ -641,7 +641,7 @@ msg.channel.sendEmbed(embed24)
 
 
 client.on('message',async msg => {
-  var p = "$";
+  var p = "+";
   if(msg.content.startsWith(p + "user")) {
   if(!msg.guild.member(msg.author).hasPermissions('MANAGE_CHANNELS')) return msg.reply('❌ **go play minecraft**');
   if(!msg.guild.member(client.user).hasPermissions(['MANAGE_CHANNELS'])) return msg.reply('❌ **البوت لا يمتلك صلاحية**');
