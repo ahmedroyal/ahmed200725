@@ -1639,6 +1639,8 @@ client.on('message', msg => {//iiM0dy_EG#7040
 ❖ $bot ➾ to give you info about the bot // معلومات عن البوت
 ❖ $user ➾ to see your user // عشان تشوف اليوسر حقك
 ❖ $اقتراح 
+❖ $inv➾رابط البوت
+❖$topinvite➾ لرويه اكثر واحد جاب invite 
 ==================================================================
 Server support : Soon!!
 ==================================================================
@@ -1655,6 +1657,159 @@ Server support : Soon!!
 
 
 
+
+
+
+
+
+
+
+client.on('message', message => {
+        var prefix = '$'; // هنا تقدر تغير البرفكس
+    var command = message.content.split(" ")[0];
+    if(command == prefix + 'bc') { // الكوماند !bc
+        var args = message.content.split(' ').slice(1).join(' ');
+        if(message.author.bot) return;
+        if(!args) return message.channel.send(**➥ Useage:** ${prefix}bc كلامك);
+
+        let bcSure = new Discord.RichEmbed()
+        .setTitle(:mailbox_with_mail: **هل انت متأكد انك تريد ارسال رسالتك الى** ${message.guild.memberCount} **عضو**)
+        .setThumbnail(client.user.avatarURL)
+        .setColor('RANDOM')
+        .setDescription(**\n:envelope: ➥ رسالتك**\n\n${args})
+        .setTimestamp()
+        .setFooter(message.author.tag, message.author.avatarURL)
+
+        message.channel.send(bcSure).then(msg => {
+            msg.react(':white_check_mark:').then(() => msg.react(':negative_squared_cross_mark:'));
+            message.delete();
+
+
+            let yesEmoji = (reaction, user) => reaction.emoji.name === ':white_check_mark:'  && user.id === message.author.id;
+            let noEmoji = (reaction, user) => reaction.emoji.name === ':negative_squared_cross_mark:' && user.id === message.author.id;
+
+            let sendBC = msg.createReactionCollector(yesEmoji);
+            let dontSendBC = msg.createReactionCollector(noEmoji);
+
+            sendBC.on('collect', r => {
+                message.guild.members.forEach(member => {
+                    member.send(args.replace([user], member)).catch();
+                    if(message.attachments.first()){
+                        member.sendFile(message.attachments.first().url).catch();
+                    }
+                })
+                message.channel.send(:timer: **يتم الان الارسال الى** \`${message.guild.memberCount}`` عضو`).then(msg => msg.delete(5000));
+                msg.delete();
+            })
+            dontSendBC.on('collect', r => {
+                msg.delete();
+                message.reply(':white_check_mark: تم الغاء ارسال رسالتك بنجاح').then(msg => msg.delete(5000));
+            });
+        })
+    }
+});
+
+
+
+
+
+
+
+
+
+
+
+
+var botid = ["512935404320849921"];
+   client.on('message', message => {
+       if(message.content.startsWith(`${prefix}inv`)){
+           if(!message.channel.guild) return message.channel.send("This Command is Just For Servers!")
+           var embed = new Discord.RichEmbed()
+           .setTitle("Invite Me !.")
+           .setURL(`https://discordapp.com/oauth2/authorize/?permissions=8&scope=bot&client_id=${botid}`)
+           .setTimestamp()
+           .setColor("RANDOM")
+           message.channel.send({embed})
+       }
+   });
+
+		
+		
+		
+		
+		
+
+		
+		
+		
+const arraySort = require('array-sort'),
+table = require('table');
+
+client.on('message' , async (message) => {
+
+    if(message.content.startsWith(prefix + "topinvite")) {
+
+  let invites = await message.guild.fetchInvites();
+
+    invites = invites.array();
+
+    arraySort(invites, 'uses', { reverse: true });
+
+    let possibleInvites = [['الدعوات', 'الاشخاص']];
+    invites.forEach(i => {
+      possibleInvites.push([i.inviter.username , i.uses]);
+    })
+    const embed = new Discord.RichEmbed()
+    .setColor(0x7289da)
+    .setTitle("دعوات السيرفر")
+    .addField(' المتصدرين' , `${table.table(possibleInvites)}`)
+
+    message.channel.send(embed)
+    }
+});
+		
+		
+		
+
+		
+		
+		
+
+		
+		
+		
+client.on('message' , najzx => {
+    var prefix = "$";
+    let user = najzx.mentions.users.first()|| client.users.get(najzx.content.split(' ')[1])
+    if(najzx.content.startsWith(prefix + 'unban')) {
+        if(!najzx.member.hasPermission('ADMINISTRATOR')) return najzx.channel.send('❌|**\`ADMINISTRATOR\`لا توجد لديك رتبة`**');
+        if(!user) return  najzx.channel.send(`Do this ${prefix} <@ID user> \n or \n ${prefix}unban ID user`);
+        najzx.guild.unban(user);
+        najzx.guild.owner.send(`لقد تم فك الباند عن الشخص \n ${user} \n By : <@${najzx.author.id}>`)
+        var embed = new Discord.RichEmbed()
+        .setThumbnail(najzx.author.avatarURl)
+        .setColor("RANDOM")
+        .setTitle('**Unban** !')
+        .addField('**User Unban :** ', `${user}` , true)
+        .addField('**By :**' ,       ` <@${najzx.author.id}> ` , true)
+        .setAuthor(najzx.guild.name)
+       .setFooter('Requested by '+najzx.author.username, najzx.author.avatarURL)
+        najzx.channel.sendEmbed(embed)
+    }
+  });
+		
+
+
+		
+		
+		
+		
+
+		
+		
+		
+		
+		
 
 
 
