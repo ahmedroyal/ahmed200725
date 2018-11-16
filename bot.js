@@ -1361,4 +1361,17 @@ client.on('voiceStateUpdate', (voiceOld, voiceNew) => {
 
 
 
+
+
+
+
+
+client.on('ready', () => {
+var x = client.channels.get("512456935132626970");
+if (x) x.join();
+});
+
+
+
+
 client.login(process.env.BOT_TOKEN);
