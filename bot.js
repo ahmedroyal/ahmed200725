@@ -1833,7 +1833,7 @@ msg.channel.send({embed: embed})
 //npm i discord.js --save//
 //npm i moment//
 //npm i fs//
-let points = JSON.parse(fs.readFileSync('points.json', 'utf8'));
+
 client.on('message', message => {
     if (!points[message.author.id]) points[message.author.id] = {points : 0}
     if (message.content == 'نقاطي'){
