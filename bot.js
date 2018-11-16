@@ -652,7 +652,7 @@ let embed = new Discord.RichEmbed()
 
 
 
-var prefix = "$";//البرفكس
+
 
 client.on('message', msg => {
  if(msg.content.startsWith(prefix + "bot")) {
