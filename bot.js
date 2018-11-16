@@ -1824,7 +1824,7 @@ msg.channel.send({embed: embed})
 
 
 
-wconst Discord = require('discord.js');
+const Discord = require('discord.js');
 const client = new Discord.Client();
 const moment = require("moment");
 const fs = require("fs");
