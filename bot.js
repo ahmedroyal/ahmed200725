@@ -1826,8 +1826,8 @@ msg.channel.send({embed: embed})
 
 
 const client = new Discord.Client();
-const moment = require("moment");
-const fs = require("fs");
+
+
 
 ///البكجات//
 //npm i discord.js --save//
