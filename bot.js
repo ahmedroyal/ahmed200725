@@ -199,4 +199,37 @@ let embed = new Discord.RichEmbed()
 
 
 
+
+
+
+
+
+
+
+client.on('message', message =>{
+    let messageArray = message.content.split(" ");
+    let cmd = messageArray[0];
+    let args = messageArray.slice(1);
+  
+
+if(cmd === `${prefix}اقتراح`) {
+    var suggestMessage = message.content.substring(8)
+    let suggestEMBED = new Discord.RichEmbed()
+    .setColor('RANDOM')
+    .setThumbnail(message.author.avatarURL)
+    .setTitle("اقتراح جديد!!")
+    .setDescription(`الاقتراح **${args}**`)
+    .setFooter(`صحاب الاقتراح : ${message.author.tag}`);
+    message.delete().catch(O_o=>{}) 
+    let suggests = message.guild.channels.find(`name`, "الاقتراحات");
+    if (!suggests) return message.channel.send("You should make A **الاقتراحات** channel!")
+    suggests.send(suggestEMBED).then(msgS => {
+msgS.react("✅")
+msgS.react("❌")   
+})
+
+}
+
+});
+
 client.login(process.env.BOT_TOKEN);
