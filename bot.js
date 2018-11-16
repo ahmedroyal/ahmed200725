@@ -1860,7 +1860,7 @@ if (message.content.startsWith(prefix + 'mypoints')) {
  
 client.on("message", function(message) 
    
-    let messageArgs = message.content.split(" ").slice(1).join(" ");
+    
     let messageRPS = message.content.split(" ").slice(2).join(" ");
     let arrayRPS = ['**# - Rock**','**# - Paper**','**# - Scissors**'];
     let result = `${arrayRPS[Math.floor(Math.random() * arrayRPS.length)]}`;
