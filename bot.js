@@ -579,7 +579,42 @@ message.channel.send(new discord.RichEmbed()
 
 
 
+client.on('message', message => {
+    var prefix = "$"
+  if (message.author.x5bz) return;
+  if (!message.content.startsWith(prefix)) return;
 
+  let command = message.content.split(" ")[0];
+  command = command.slice(prefix.length);
+
+  let args = message.content.split(" ").slice(1);
+
+  if (command == "kick") {
+               if(!message.channel.guild) return message.reply('** This command only for servers**');
+         
+  if(!message.guild.member(message.author).hasPermission("KICK_MEMBERS")) return message.reply("**You Don't Have ` KICK_MEMBERS ` Permission**");
+  if(!message.guild.member(client.user).hasPermission("KICK_MEMBERS")) return message.reply("**I Don't Have ` KICK_MEMBERS ` Permission**");
+  let user = message.mentions.users.first();
+  let reason = message.content.split(" ").slice(2).join(" ");
+  if (message.mentions.users.size < 1) return message.reply("**منشن شخص**");
+  if(!reason) return message.reply ("**اكتب سبب الطرد**");
+  if (!message.guild.member(user)
+  .kickable) return message.reply("**لايمكنني طرد شخص اعلى من رتبتي يرجه اعطاء البوت رتبه عالي**");
+
+  message.guild.member(user).kick();
+
+  const kickembed = new Discord.RichEmbed()
+  .setAuthor(`KICKED!`, user.displayAvatarURL)
+  .setColor("RANDOM")
+  .setTimestamp()
+  .addField("**User:**",  '**[ ' + `${user.tag}` + ' ]**')
+  .addField("**By:**", '**[ ' + `${message.author.tag}` + ' ]**')
+  .addField("**Reason:**", '**[ ' + `${reason}` + ' ]**')
+  message.channel.send({
+    embed : kickembed
+  })
+}
+});
 
 
 
@@ -1591,8 +1626,8 @@ client.on('message', msg => {//iiM0dy_EG#7040
  ❖  $unmute <mention> ➾ unmute member
  ❖  $bc <message> ➾ message all members in server
  ❖  $clear ➾ Clears the chat
- ❖ __soon__
- ❖ __soon__
+ ❖   __soon__
+ ❖   __soon__
 ╔[❖══════ஜ۩۞۩ஜ══════❖]╗
    General  ✻ Commands
 ╚[❖══════ஜ۩۞۩ஜ══════❖]╝
@@ -1603,6 +1638,7 @@ client.on('message', msg => {//iiM0dy_EG#7040
 ❖ $server ➾ to give you info about the server // معلومات عن السيرفر
 ❖ $bot ➾ to give you info about the bot // معلومات عن البوت
 ❖ $user ➾ to see your user // عشان تشوف اليوسر حقك
+❖ $اقتراح 
 ==================================================================
 Server support : Soon!!
 ==================================================================
@@ -1618,57 +1654,6 @@ Server support : Soon!!
 
 
 
-
-
-
-client.on('message', message => {
-   if (message.content === "$id") {
-   let embed = new Discord.RichEmbed()
-  .setColor("RANDOM")
-  .setThumbnail(message.author.avatarURL)
-  .addField("Name:",`${message.author.username}`, true)
-  .addField('Discrim:',"#" +  message.author.discriminator, true)
-  .addField("ID:", message.author.id, true)
-  .addField("Create At:", message.author.createdAt, true)
-     
-     
-  message.channel.sendEmbed(embed);
-    }
-});
-  
-
-
-
-
-
-
-
-
-const arraySort = require('array-sort'),
-table = require('table');
-
-client.on('message' , async (message) => {
-
-    if(message.content.startsWith(prefix + "topinvite")) {
-
-  let invites = await message.guild.fetchInvites();
-
-    invites = invites.array();
-
-    arraySort(invites, 'uses', { reverse: true });
-
-    let possibleInvites = [['الدعوات', 'الاشخاص']];
-    invites.forEach(i => {
-      possibleInvites.push([i.inviter.username , i.uses]);
-    })
-    const embed = new Discord.RichEmbed()
-    .setColor(0x7289da)
-    .setTitle("دعوات السيرفر")
-    .addField(' المتصدرين' , `${table.table(possibleInvites)}`)
-
-    message.channel.send(embed)
-    }
-});
 
 
 
