@@ -1664,53 +1664,42 @@ Server support : Soon!!
 
 
 
+
+
+
 client.on('message', message => {
-        var prefix = '$'; // هنا تقدر تغير البرفكس
-    var command = message.content.split(" ")[0];
-    if(command == prefix + 'bc') { // الكوماند !bc
-        var args = message.content.split(' ').slice(1).join(' ');
-        if(message.author.bot) return;
-      
-
-        let bcSure = new Discord.RichEmbed()
-        .setTitle(:mailbox_with_mail: **هل انت متأكد انك تريد ارسال رسالتك الى** ${message.guild.memberCount} **عضو**)
-        .setThumbnail(client.user.avatarURL)
-        .setColor('RANDOM')
-        .setDescription(**\n:envelope: ➥ رسالتك**\n\n${args})
-        .setTimestamp()
-        .setFooter(message.author.tag, message.author.avatarURL)
-
-        message.channel.send(bcSure).then(msg => {
-            msg.react(':white_check_mark:').then(() => msg.react(':negative_squared_cross_mark:'));
-            message.delete();
-
-
-            let yesEmoji = (reaction, user) => reaction.emoji.name === ':white_check_mark:'  && user.id === message.author.id;
-            let noEmoji = (reaction, user) => reaction.emoji.name === ':negative_squared_cross_mark:' && user.id === message.author.id;
-
-            let sendBC = msg.createReactionCollector(yesEmoji);
-            let dontSendBC = msg.createReactionCollector(noEmoji);
-
-            sendBC.on('collect', r => {
-                message.guild.members.forEach(member => {
-                    member.send(args.replace([user], member)).catch();
-                    if(message.attachments.first()){
-                        member.sendFile(message.attachments.first().url).catch();
-                    }
-                })
-                message.channel.send(:timer: **يتم الان الارسال الى** \`${message.guild.memberCount}`` عضو`).then(msg => msg.delete(5000));
-                msg.delete();
-            })
-            dontSendBC.on('collect', r => {
-                msg.delete();
-                message.reply(':white_check_mark: تم الغاء ارسال رسالتك بنجاح').then(msg => msg.delete(5000));
-            });
-        })
-    }
+  if (message.guild) {
+ let embed = new Discord.RichEmbed()
+  let args = message.content.split(' ').slice(1).join(' ');
+if(message.content.split(' ')[0] == prefix + 'bc') {
+  if (!args[1]) {
+message.channel.send("**$bc <message>**");
+return;
+}
+      message.guild.members.forEach(m => {
+ if(!message.member.hasPermission('ADMINISTRATOR')) return;
+          var bc = new Discord.RichEmbed()
+          .setAuthor(message.author.username, message.author.avatarURL)
+          .addField(' The server', `${message.guild.name}`, true)
+          .addField(' who sended the messege ', `${message.author.username}!${message.author.discriminator}`, true)
+          .addField(' the messege ', args)
+          .setThumbnail(message.guild.iconURL)
+          .setColor('RANDOM')
+          m.send(`${m}`,{embed: bc});
+      });
+      const unknown = new Discord.RichEmbed()
+      .setAuthor(message.author.username, message.author.avatarURL)
+      .setTitle('✅| the messege is loading ')
+      .addBlankField(true)
+      .addField('♨| i got sended to  ', message.guild.memberCount , true)
+      .addField('📝| the message ', args)
+      .setColor('RANDOM')
+      message.channel.sendEmbed(embed);
+  }
+  } else {
+      return;
+  }
 });
-
-
-
 
 
 
