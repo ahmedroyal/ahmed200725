@@ -1966,7 +1966,7 @@ P.react('🇵🇸').then(() => P.react('🇵🇸'))
  });
  
 client.on('message', msg => {
-   if(msg.content === "-قطر") {
+   if(msg.content === "$قطر") {
 var embed20 = new Discord.RichEmbed()
 .setTitle("🇶🇦 🕌 الاذان في قطر 🕌 🇶🇦")
 .setImage("https://cdn.discordapp.com/attachments/499383925924429837/502497346207219742/unknown.png")
