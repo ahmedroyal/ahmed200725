@@ -807,7 +807,7 @@ client.on('messageDelete', message => {
     if(!message.guild.member(client.user).hasPermission('EMBED_LINKS')) return;
     if(!message.guild.member(client.user).hasPermission('MANAGE_MESSAGES')) return;
  
-    var logChannel = message.guild.channels.find(c => c.name === 'log');
+    var logChannel = message.guild.channels.find(c => c.name === '『logs』');
     if(!logChannel) return;
  
     let messageDelete = new Discord.RichEmbed()
@@ -827,7 +827,7 @@ client.on('messageUpdate', (oldMessage, newMessage) => {
     if(!oldMessage.guild.member(client.user).hasPermission('EMBED_LINKS')) return;
     if(!oldMessage.guild.member(client.user).hasPermission('MANAGE_MESSAGES')) return;
  
-    var logChannel = oldMessage.guild.channels.find(c => c.name === 'log');
+    var logChannel = oldMessage.guild.channels.find(c => c.name === '『logs』');
     if(!logChannel) return;
  
     if(oldMessage.content.startsWith('https://')) return;
@@ -850,7 +850,7 @@ client.on('roleCreate', role => {
     if(!role.guild.member(client.user).hasPermission('EMBED_LINKS')) return;
     if(!role.guild.member(client.user).hasPermission('VIEW_AUDIT_LOG')) return;
  
-    var logChannel = role.guild.channels.find(c => c.name === 'log');
+    var logChannel = role.guild.channels.find(c => c.name === '『logs』');
     if(!logChannel) return;
  
     role.guild.fetchAuditLogs().then(logs => {
@@ -873,7 +873,7 @@ client.on('roleDelete', role => {
     if(!role.guild.member(client.user).hasPermission('EMBED_LINKS')) return;
     if(!role.guild.member(client.user).hasPermission('VIEW_AUDIT_LOG')) return;
  
-    var logChannel = role.guild.channels.find(c => c.name === 'log');
+    var logChannel = role.guild.channels.find(c => c.name === '『logs』');
     if(!logChannel) return;
  
     role.guild.fetchAuditLogs().then(logs => {
@@ -896,7 +896,7 @@ client.on('roleUpdate', (oldRole, newRole) => {
     if(!oldRole.guild.member(client.user).hasPermission('EMBED_LINKS')) return;
     if(!oldRole.guild.member(client.user).hasPermission('VIEW_AUDIT_LOG')) return;
  
-    var logChannel = oldRole.guild.channels.find(c => c.name === 'log');
+    var logChannel = oldRole.guild.channels.find(c => c.name === '『logs』');
     if(!logChannel) return;
  
     oldRole.guild.fetchAuditLogs().then(logs => {
@@ -957,7 +957,7 @@ client.on('channelCreate', channel => {
     if(!channel.guild.member(client.user).hasPermission('EMBED_LINKS')) return;
     if(!channel.guild.member(client.user).hasPermission('VIEW_AUDIT_LOG')) return;
  
-    var logChannel = channel.guild.channels.find(c => c.name === 'log');
+    var logChannel = channel.guild.channels.find(c => c.name === '『logs』');
     if(!logChannel) return;
  
     if(channel.type === 'text') {
@@ -1021,7 +1021,7 @@ client.on('channelDelete', channel => {
 client.on('channelUpdate', (oldChannel, newChannel) => {
     if(!oldChannel.guild) return;
  
-    var logChannel = oldChannel.guild.channels.find(c => c.name === 'log');
+    var logChannel = oldChannel.guild.channels.find(c => c.name === '『logs』');
     if(!logChannel) return;
  
     if(oldChannel.type === 'text') {
@@ -1070,7 +1070,7 @@ client.on('guildBanAdd', (guild, user) => {
     if(!guild.member(client.user).hasPermission('EMBED_LINKS')) return;
     if(!guild.member(client.user).hasPermission('VIEW_AUDIT_LOG')) return;
  
-    var logChannel = guild.channels.find(c => c.name === 'log');
+    var logChannel = guild.channels.find(c => c.name === '『logs』');
     if(!logChannel) return;
  
     guild.fetchAuditLogs().then(logs => {
@@ -1094,7 +1094,7 @@ client.on('guildBanRemove', (guild, user) => {
     if(!guild.member(client.user).hasPermission('EMBED_LINKS')) return;
     if(!guild.member(client.user).hasPermission('VIEW_AUDIT_LOG')) return;
  
-    var logChannel = guild.channels.find(c => c.name === 'log');
+    var logChannel = guild.channels.find(c => c.name === '『logs』');
     if(!logChannel) return;
  
     guild.fetchAuditLogs().then(logs => {
@@ -1192,7 +1192,7 @@ client.on('guildUpdate', (oldGuild, newGuild) => {
     })
 });
 client.on('guildMemberUpdate', (oldMember, newMember) => {
-    var logChannel = oldMember.guild.channels.find(c => c.name === 'log');
+    var logChannel = oldMember.guild.channels.find(c => c.name === '『logs』');
     if(!logChannel) return;
  
     oldMember.guild.fetchAuditLogs().then(logs => {
@@ -1262,7 +1262,7 @@ client.on('guildMemberUpdate', (oldMember, newMember) => {
     }
 });
 client.on('guildMemberAdd', member => {
-  var logChannel = member.guild.channels.find(c => c.name === 'log');
+  var logChannel = member.guild.channels.find(c => c.name === '『logs』');
   if(!logChannel) return;
  
   let newMember = new Discord.RichEmbed()
@@ -1282,7 +1282,7 @@ function Days(date) {
     return days + (days == 1 ? " day" : " days") + " ago";
 }
 client.on('guildMemberRemove', member => {
-  var logChannel = member.guild.channels.find(c => c.name === 'log');
+  var logChannel = member.guild.channels.find(c => c.name === '『logs』');
   if(!logChannel) return;
  
   let leaveMember = new Discord.RichEmbed()
@@ -1303,7 +1303,7 @@ client.on('voiceStateUpdate', (voiceOld, voiceNew) => {
     if(!voiceOld.guild.member(client.user).hasPermission('EMBED_LINKS')) return;
     if(!voiceOld.guild.member(client.user).hasPermission('VIEW_AUDIT_LOG')) return;
  
-    var logChannel = voiceOld.guild.channels.find(c => c.name === 'log');
+    var logChannel = voiceOld.guild.channels.find(c => c.name === '『logs』');
     if(!logChannel) return;
  
     voiceOld.guild.fetchAuditLogs().then(logs => {
@@ -1618,7 +1618,7 @@ client.on('guildMemberAdd', member => {
     invites[member.guild.id] = guildInvites;
     const invite = guildInvites.find(i => ei.get(i.code).uses < i.uses);
     const inviter = client.users.get(invite.inviter.id);
-    const logChannel = member.guild.channels.find(channel => channel.name === "chat");
+    const logChannel = member.guild.channels.find(channel => channel.name === "『chat』");
     logChannel.send(`Invited by: <@{inviter.tag}>`);
   });
 });
@@ -1669,7 +1669,7 @@ client.on('message', msg => {//iiM0dy_EG#7040
 ==================================================================
 Server support : Soon!!
 ==================================================================
-🤖Bot invite link🤖 : https://discordapp.com/oauth2/authorize?client_id=512935404320849921&permissions=8&scope=bot
+🤖Bot invite link🤖 : بوت خاص
 ❤ Developer ❤  : <@478544778741678090>
 ==================================================================
  
@@ -1999,6 +1999,123 @@ B.react('🇧🇭').then(() => B.react('🇧🇭'))
 client.on('guildMemberAdd', member=> {
     member.addRole(member.guild.roles.find("name","『MEMBERS 』"));
     });
+
+
+
+
+
+
+
+
+
+
+client.on("guildMemberAdd", member => {
+let welcomer = member.guild.channels.find("name","『chat』");
+      if(!welcomer) return;
+      if(welcomer) {
+         moment.locale('ar-ly');
+         var h = member.user;
+        let norelden = new Discord.RichEmbed()
+        .setColor('RANDOM')
+        .setThumbnail(h.avatarURL)
+        .setAuthor(h.username,h.avatarURL)
+        .addField(': تاريخ دخولك الدسكورد',`${moment(member.user.createdAt).format('D/M/YYYY h:mm a')} **\n** \`${moment(member.user.createdAt).fromNow()}\``,true)
+         .setFooter(`${h.tag}`,"https://images-ext-2.discordapp.net/external/JpyzxW2wMRG2874gSTdNTpC_q9AHl8x8V4SMmtRtlVk/https/orcid.org/sites/default/files/files/ID_symbol_B-W_128x128.gif")
+     welcomer.send({embed:norelden});          
+               
+ 
+      }
+      });
+
+
+
+
+
+
+
+
+client.on('message', message => {
+              if (!message.channel.guild) return;
+      if(message.content =='$member')
+      var 24. = new Discord.RichEmbed()
+      .addField('Count:',`${message.guild.memberCount}`)
+      message.channel.send(24.);
+    });
+
+
+
+
+
+
+
+
+
+
+
+
+
+client.on('message', ( message ) => {
+  if(message.author.bot) return;
+
+  if(message.channel.id !== '513308667768995849') return;
+
+  let types = [
+    'jpg',
+    'jpeg',
+    'PNG',
+    'png',
+    'gif',
+    'mp4',
+    'avi',
+    'mkv',
+    'mpeg'
+  ]
+
+  if (message.attachments.size <= 0) {
+    message.delete();
+    message.channel.send(`${message.author}, هذا الروم مخصص للصور فقط :angry:`)
+    .then(msg => {
+      setTimeout(() => {
+        msg.delete();
+      }, 5000)
+  })
+  return;
+}
+
+  if(message.attachments.size >= 1) {
+    let filename = message.attachments.first().filename
+    console.log(filename);
+    if(!types.some( type => filename.endsWith(type) )) {
+      message.delete();
+      message.channel.send(`${message.author}, هذا الروم مخصص للصور فقط :angry:`)
+      .then(msg => {
+        setTimeout(() => {
+          msg.delete();
+        }, 5000)
+      })
+    }
+  }
+
+})
+
+
+
+
+
+
+
+client.on('guildMemberAdd', member => {
+ const channel = member.guild.channels.find('name', '『chat』');
+ if (!channel) return;
+ channel.send(`${member}
+**__Welcome to ${member.guild.name}__**`);
+ 
+});
+
+
+
+
+
 
 
 
