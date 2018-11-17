@@ -6,7 +6,7 @@ const prefix = '$'
 
 client.on('ready', () => {
   console.log(`Logged in as ${client.user.tag}!`);
-client.user.setGame(`$help | Trees Codes`,"http://twitch.tv/S-F")
+client.user.setGame(`Soon`,"http://twitch.tv/S-F")
   console.log('')
   console.log('')
   console.log('╔[═════════════════════════════════════════════════════════════════]╗')
@@ -2026,28 +2026,6 @@ let welcomer = member.guild.channels.find("name","『chat』");
  
       }
       });
-
-
-
-
-
-
-
-
-client.on('message', message => {
-              if (!message.channel.guild) return;
-      if(message.content =='$member')
-      var 24. = new Discord.RichEmbed()
-      .addField('Count:',`${message.guild.memberCount}`)
-      message.channel.send(24.);
-    });
-
-
-
-
-
-
-
 
 
 
