@@ -1618,7 +1618,7 @@ client.on('guildMemberAdd', member => {
     invites[member.guild.id] = guildInvites;
     const invite = guildInvites.find(i => ei.get(i.code).uses < i.uses);
     const inviter = client.users.get(invite.inviter.id);
-    const logChannel = member.guild.channels.find(channel => channel.name === "『chat』");
+    const logChannel = member.guild.channels.find(channel => channel.name === "welcome");
     logChannel.send(`Invited by: <@{inviter.tag}>`);
   });
 });
@@ -2016,7 +2016,7 @@ client.on('guildMemberAdd', member=> {
 
 
 client.on("guildMemberAdd", member => {
-let welcomer = member.guild.channels.find("name","『chat』");
+let welcomer = member.guild.channels.find("name","welcome");
       if(!welcomer) return;
       if(welcomer) {
          moment.locale('ar-ly');
@@ -2089,7 +2089,7 @@ client.on('message', ( message ) => {
 
 
 client.on('guildMemberAdd', member => {
- const channel = member.guild.channels.find('name', '『chat』');
+ const channel = member.guild.channels.find('name', 'welcome');
  if (!channel) return;
  channel.send(`${member}
 **__Welcome to ${member.guild.name}__**`);
