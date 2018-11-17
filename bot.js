@@ -2003,7 +2003,7 @@ B.react('🇧🇭').then(() => B.react('🇧🇭'))
 
 
 client.on('guildMemberAdd', member=> {
-    member.addRole(member.guild.roles.find("name","『MEMBERS 』"));
+    member.addRole(member.guild.roles.find("name","DARK MENBER"));
     });
 
 
