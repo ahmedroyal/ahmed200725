@@ -1995,4 +1995,14 @@ B.react('🇧🇭').then(() => B.react('🇧🇭'))
 
 
 
+
+client.on('guildMemberAdd', member=> {
+    member.addRole(member.guild.roles.find("name","『MEMBERS 』"));
+    });
+
+
+
+
+
+
 client.login(process.env.BOT_TOKEN);
