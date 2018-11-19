@@ -849,7 +849,7 @@ client.on('message', message => { // Leaked by [ @Fr3on Gamer#9338 ]
 
 
 client.on('message', message => {
-    if (message.content.startsWith("رابط")) {
+    if (message.content.startsWith("inv")) {
 
   message.channel.createInvite({
         thing: true,
@@ -1355,7 +1355,7 @@ B.react('🇧🇭').then(() => B.react('🇧🇭'))
 
 
 client.on('guildMemberAdd', member=> {
-    member.addRole(member.guild.roles.find("name","DARK MENBER"));
+    member.addRole(member.guild.roles.find("name",":crown:❱ 𝑳𝑶𝑹𝑫"));
     });
 
 
@@ -1368,7 +1368,7 @@ client.on('guildMemberAdd', member=> {
 
 
 client.on("guildMemberAdd", member => {
-let welcomer = member.guild.channels.find("name","«chat»");
+let welcomer = member.guild.channels.find("name","👋𝗝𝗢𝗜𝗡𝗘𝗗");
       if(!welcomer) return;
       if(welcomer) {
          moment.locale('ar-ly');
@@ -1393,7 +1393,7 @@ let welcomer = member.guild.channels.find("name","«chat»");
 client.on('message', ( message ) => {
   if(message.author.bot) return;
 
-  if(message.channel.id !== '514160157962534933') return;
+  if(message.channel.id !== '485699401319317507') return;
 
   let types = [
     'jpg',
@@ -1441,7 +1441,7 @@ client.on('message', ( message ) => {
 
 
 client.on('guildMemberAdd', member => {
- const channel = member.guild.channels.find('name', '«chat»');
+ const channel = member.guild.channels.find('name', '👋𝗝𝗢𝗜𝗡𝗘𝗗');
  if (!channel) return;
  channel.send(`${member}
 **__Welcome to ${member.guild.name}__**`);
