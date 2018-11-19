@@ -1597,31 +1597,17 @@ client.on("message", message => {
 
 
 
-
-const invites = {};
-
-const wait = require('util').promisify(setTimeout);
-
-client.on('ready', () => {
-  wait(1000);
-
-  client.guilds.forEach(g => {
-    g.fetchInvites().then(guildInvites => {
-      invites[g.id] = guildInvites;
-    });
-  });
-});
-
 client.on('guildMemberAdd', member => {
   member.guild.fetchInvites().then(guildInvites => {
     const ei = invites[member.guild.id];
-    invites[member.guild.id] = guildInvites;
     const invite = guildInvites.find(i => ei.get(i.code).uses < i.uses);
     const inviter = client.users.get(invite.inviter.id);
-    const logChannel = member.guild.channels.find(channel => channel.name === "welcome");
-    logChannel.send(`Invited by: <@{inviter.tag}>`);
-  });
+    const yumz = member.guild.channels.find("name", "test");
+     yumz.send(`<@${member.user.id}> تم دعوته بواسطة <@${inviter.id}>`);
+   //  yumz.send(`<@${member.user.id}> joined using invite code ${invite.code} from <@${inviter.id}>. Invite was used ${invite.uses} times since its creation.`);
+  }); 
 });
+
 
 
 
@@ -2016,7 +2002,7 @@ client.on('guildMemberAdd', member=> {
 
 
 client.on("guildMemberAdd", member => {
-let welcomer = member.guild.channels.find("name","welcome");
+let welcomer = member.guild.channels.find("name","test");
       if(!welcomer) return;
       if(welcomer) {
          moment.locale('ar-ly');
@@ -2089,7 +2075,7 @@ client.on('message', ( message ) => {
 
 
 client.on('guildMemberAdd', member => {
- const channel = member.guild.channels.find('name', 'welcome');
+ const channel = member.guild.channels.find('name', 'test');
  if (!channel) return;
  channel.send(`${member}
 **__Welcome to ${member.guild.name}__**`);
