@@ -795,76 +795,6 @@ client.on('message', message => {
 
 
 
-
-
-
-
-client.on('message', message => {
-
-  if (message.author.bot) return;
-
-  if (!message.content.startsWith(prefix)) return;
-
-
-  let command = message.content.split(" ")[0];
-
-  command = command.slice(prefix.length);
-
-
-  let args = message.content.split(" ").slice(1);
-
-
-// $say
-
-  if (command === "$say") {
-
-          message.delete()
-
-    message.channel.sendMessage(args.join(" ")).catch(console.error);
-
-  }
-
-  
-
- 
-
-
-if (command == "embed") {
-
-    let say = new Discord.RichEmbed()
-
-    .setDescription(args.join(" "))
-
-    .setColor(0x23b2d6)
-
-    message.channel.sendEmbed(say);
-
-    message.delete();
-
-  }
-
-
-
-});
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 client.on('ready', () => {
 var x = client.channels.get("478551973767938049");
 if (x) x.join();
@@ -1076,11 +1006,11 @@ client.on('message', msg => {//iiM0dy_EG#7040
  ❖  $unmute <mention> ➾ unmute member
  ❖  $bc <message> ➾ message all members in server
  ❖  $clear ➾ Clears the chat
- ❖ $unban ➾ unban member frome server
- ❖ $mutechat ➾ Mute Chat
- ❖ $unchat ➾ Open Chat
- ❖ $banlist
- ❖   __soon__
+ ❖  $unban ➾ unban member frome server
+ ❖  $mutechat ➾ Mute Chat
+ ❖  $unchat ➾ Open Chat
+ ❖  $banlist➾see ban list
+ ❖  $move➾move pepole
 ╔[❖══════ஜ۩۞۩ஜ══════❖]╗
    General  ✻ Commands
 ╚[❖══════ஜ۩۞۩ஜ══════❖]╝
@@ -1406,21 +1336,12 @@ B.react('🇧🇭').then(() => B.react('🇧🇭'))
 
 
 
-client.on('guildMemberAdd', member=> {
-    member.addRole(member.guild.roles.find("name",":crown:❱ 𝑳𝑶𝑹𝑫"));
-    });
-
-
-
-
-
-
 
 
 
 
 client.on("guildMemberAdd", member => {
-let welcomer = member.guild.channels.find("name","👋𝗝𝗢𝗜𝗡𝗘𝗗");
+let welcomer = member.guild.channels.find("name","«👋welcome»");
       if(!welcomer) return;
       if(welcomer) {
          moment.locale('ar-ly');
@@ -1493,7 +1414,7 @@ client.on('message', ( message ) => {
 
 
 client.on('guildMemberAdd', member => {
- const channel = member.guild.channels.find('name', '👋𝗝𝗢𝗜𝗡𝗘𝗗');
+ const channel = member.guild.channels.find('name', '«👋welcome»');
  if (!channel) return;
  channel.send(`${member}
 **__Welcome to ${member.guild.name}__**`);
@@ -1640,25 +1561,99 @@ client.on('message', msg => {
 
 
 
-
-
-client.on('message',async message => {
-  if(message.content.startsWith("$voiceChannel")) {
-  if(!message.guild.member(message.author).hasPermissions('MANAGE_CHANNELS')) return message.reply('❌ **ليس لديك الصلاحيات اللازمة**');
-  if(!message.guild.member(client.user).hasPermissions(['MANAGE_CHANNELS','MANAGE_ROLES_OR_PERMISSIONS'])) return message.reply('❌ **ليس معي الصلاحيات الكافية**');
-  message.channel.send('✅| **تم عمل الروم بنجاح**');
-  message.guild.createChannel(`Voice Online : [ ${message.guild.members.filter(m => m.voiceChannel).size} ]` , 'voice').then(c => {
-    console.log(`Voice online channel setup for guild: \n ${message.guild.name}`);
-    c.overwritePermissions(message.guild.id, {
-      CONNECT: false,
-      SPEAK: false
-    });
-    setInterval(() => {
-      c.setName(`Voice Online : [ ${message.guild.members.filter(m => m.voiceChannel).size} ]`)
-    },1000);
-  });
-  }
+client.on('guildMemberAdd', member => {
+    const botCount = member.guild.members.filter(m=>m.user.bot).size
+    const memberCount = [member.guild.memberCount] - [botCount]
+    client.channels.get('514181408684769280').setName(`⟫『 ${memberCount} عدد الاعضاء 』⟪`);
+    client.channels.get('514181492495089664').setName(`⟫『 ${botCount} عدد البوتات 』⟪`);
 });
+
+client.on('guildMemberRemove', member => {
+    const botCount = member.guild.members.filter(m=>m.user.bot).size
+    const memberCount = [member.guild.memberCount] - [botCount]
+    client.channels.get('514181408684769280').setName(`⟫『 ${memberCount} عدد الاعضاء 』⟪`);
+    client.channels.get('514181492495089664').setName(`⟫『 ${botCount} عدد البوتات 』⟪`);
+});
+
+
+
+
+
+
+
+
+
+
+client.on("guildMemberAdd", member => {
+  member.createDM().then(function (channel) {
+  return channel.send(`:rose:  ولكم نورت السيرفر:rose: 
+:crown:اسم العضو  ${member}:crown:  
+انت العضو رقم ${member.guild.memberCount} `) 
+}).catch(console.error)
+})
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+client.on('message', message => {
+    var prefix = "$";
+if(!message.channel.guild) return;
+if(message.content.startsWith(prefix + 'move')) {
+ if (message.member.hasPermission("MOVE_MEMBERS")) {
+ if (message.mentions.users.size === 0) {
+ return message.channel.send("``لاستخدام الأمر اكتب هذه الأمر : " +prefix+ "move [USER]``")
+}
+if (message.member.voiceChannel != null) {
+ if (message.mentions.members.first().voiceChannel != null) {
+ var authorchannel = message.member.voiceChannelID;
+ var usermentioned = message.mentions.members.first().id;
+var embed = new Discord.RichEmbed()
+ .setTitle("Succes!")
+ .setColor("#000000")
+ .setDescription(`لقد قمت بسحب <@${usermentioned}> الى الروم الصوتي الخاص بك✅ `)
+var embed = new Discord.RichEmbed()
+.setTitle(`You are Moved in ${message.guild.name}`)
+ .setColor("RANDOM")
+.setDescription(`**<@${message.author.id}> Moved You To His Channel!\nServer --> ${message.guild.name}**`)
+ message.guild.members.get(usermentioned).setVoiceChannel(authorchannel).then(m => message.channel.send(embed))
+message.guild.members.get(usermentioned).send(embed)
+} else {
+message.channel.send("``لا تستطيع سحب "+ message.mentions.members.first() +" `يجب ان يكون هذه العضو في روم صوتي`")
+}
+} else {
+ message.channel.send("**``يجب ان تكون في روم صوتي لكي تقوم بسحب العضو أليك``**")
+}
+} else {
+message.react("❌")
+ }}});
+
+
+
+
+
+
+
+client.on ("guildMemberAdd", member => {
+
+   var role = member.guild.roles.find ("name", "LORDS");
+   member.addRole (role);
+
+})
+
+
+
+
 
 
 
