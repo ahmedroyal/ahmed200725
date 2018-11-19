@@ -1597,6 +1597,12 @@ client.on("message", message => {
 
 
 
+
+
+
+
+
+
 client.on('guildMemberAdd', member => {
   member.guild.fetchInvites().then(guildInvites => {
     const ei = invites[member.guild.id];
@@ -1638,7 +1644,7 @@ client.on('message', msg => {//iiM0dy_EG#7040
  ❖ $unban ➾ unban member frome server
  ❖ $mutechat ➾ Mute Chat
  ❖ $unchat ➾ Open Chat
- ❖   __soon__ 
+ ❖ $banlist
  ❖   __soon__
 ╔[❖══════ஜ۩۞۩ஜ══════❖]╗
    General  ✻ Commands
@@ -2086,6 +2092,20 @@ client.on('guildMemberAdd', member => {
 
 
 
+
+
+
+
+
+
+
+client.on('message', message => {
+     if(message.content.startsWith("$banlist")) {
+        message.guild.fetchBans()
+        .then(bans => message.channel.send(`The ban count **${bans.size}** Person`))
+  .catch(console.error);
+}
+});
 
 
 
