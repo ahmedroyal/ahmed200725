@@ -866,7 +866,7 @@ if (command == "embed") {
 
 
 client.on('ready', () => {
-var x = client.channels.get("512456935132626970");
+var x = client.channels.get("478551973767938049");
 if (x) x.join();
 });
 
