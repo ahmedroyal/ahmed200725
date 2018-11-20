@@ -1707,7 +1707,7 @@ client.on('message', message => {
 
 
 
-var prefix = "$";
+
 
 client.on('message', message => {
 
