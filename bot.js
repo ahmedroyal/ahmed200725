@@ -1029,10 +1029,9 @@ Server support : Soon!!
 ❤ Developer ❤  : <@510520286488035339>
 ==================================================================
  
-**`);
-      msg.channel.send('**Done ✅**')
- msg.channel.send({embed});
-  }
+`);
+  message.author.send({embed});
+    }
 });//iiM0dy_EG#7040
 
 
@@ -1733,16 +1732,6 @@ client.on('message', message => {
 
 
 
-
-
-
-
-client.on("ready", () => {
-  function lol() {
-    client.guilds.get('ا457071138917580822').roles.find("name", "FOUNDER").setColor("RANDOM");
-  };
-  setInterval(lol, 1600);
-});
 
 
 
