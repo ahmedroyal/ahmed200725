@@ -544,49 +544,24 @@ client.on("message", message => {
 
 
 
-
-client.on("message", msg => {
-var prefix = '$';// البرفكس
-var m = msg.guild.name
-var d = msg.guild.memberCount
-var p = msg.guild.roles.size
-var c = msg.guild.channels.size
-var l = msg.guild.region
-var o = msg.guild.iconURL
-var k = msg.guild.owner
-var i = msg.guild.emojis.size
-var b = msg.guild.members.filter(m => m.user.bot).size
-var h = d - b
-var cre = `${moment(msg.guild.createdAt).format('D/M/YYYY h:mm a')} **\n** \`${moment(msg.guild.createdAt).fromNow()}\``
-var t = msg.guild.channels.filter(e => e.type === "text")
-var v = msg.guild.channels.filter(e => e.type === "voice")
-var pow = msg.guild.verificationLevel
-var e = msg.guild.emojis.size
-var e2 = msg.guild.emojis.array()
-var afk = msg.guild.afkChannel
-var ID = msg.guild.id
-if (msg.content.startsWith(prefix + "servers")){// الامر
-var embed = new Discord.RichEmbed()
-.setColor("RANDOM")
-.setThumbnail(o)
-.addField("👑**Owner**👑⤵", k, true)
-.addField("📜**Name**📜⤵", m, true)
-.addField("🆔**ID**🆔⤵", ID, true)
-.addField("👥**MembersAll**🤖⤵", d, true)
-.addField("📕**Roles**📕⤵", p, true)
-.addField("📕**Channels**📕⤵", c, true)
-.addField("🌐**Region**🌐⤵", l, true)
-.addField("🤖**Bots**🤖⤵", b, true)
-.addField("👥**Humans**👥⤵", h, true)
-.addField("📝**TextRooms**📝⤵", `${t.size}`, true)
-.addField("🔒**verificationLevel**🔒➥", pow, true)
-.addField("🎤**VoiceRooms**🎤⤵", `${v.size}`, true)
-.addField("📆Created At📆⤵", cre,true)
-.addField("🛏AFKRoom🛏⤵", afk, true)
-msg.channel.sendEmbed(embed);
+client.on('message', async function (message)  {
+if(message.content.startsWith(prefix+"server")) {
+const vlevel = ['None', 'Low (Must have verified email)', 'Medium (Must be register for 5 mineuts)', 'High (Need to wait 10 minutes)', 'Very High (Need verified phone on account)']
+const members = await message.guild.members.filter(m=> m.presence.status === 'online').size + message.guild.members.filter(m=> m.presence.status === 'idle').size + message.guild.members.filter(m=> m.presence.status === 'dnd').size  
+message.channel.send(new discord.RichEmbed() 
+.setAuthor(`${message.guild.name} [Server Icon URL]`, message.guild.iconURL)
+.setURL(message.guild.iconURL)
+.addField('🆔 ايدي السيرفر', message.guild.id, true)
+.addField('👑 اونر السيرفر', message.guild.owner, true)
+.addField('🗺 منطقة', message.guild.region, true)
+.addField(`👥 الاعضاء [${message.guild.memberCount}]`, `${members} online` ,true)
+.addField(`💬 القنوات`, `**${message.guild.channels.filter(c => c.type === 'category').size}** الاقسام | **${message.guild.channels.filter(c=> c.type === 'text').size}**روم كتابي | **${message.guild.channels.filter(c=> c.type === 'voice').size}** روم صوتي` ,true)
+.addField(`💠 مستوى التحقق`, vlevel[message.guild.verificationLevel] ,true)
+.addField(`👔 الرتب`, message.guild.roles.size ,true)
+.addField(`📆 تم انشأوها`, message.guild.createdAt ,true)
+)
 }
-});
-
+})
 
 
 
@@ -983,57 +958,59 @@ client.on("message", message => {
 
 
 
+client.on('message', message => {
+    if (message.author.bot) return;
+     if (message.content === prefix + "help") {
+         message.channel.send('**تم ارسال الاوامر بالخاص :mailbox_with_mail:**');
+  const embed = new Discord.RichEmbed()
+  
+         
 
-
-
-
-
-client.on('message', msg => {//iiM0dy_EG#7040
-  if(msg.content === prefix + 'help') {
-             const embed = new Discord.RichEmbed()
-             .setColor('RANDOM')
-                         .setDescription(`**
+      .setColor("RANDOM")
+.setDescription(`
  
-╔[❖══════ஜ۩۞۩ஜ══════❖]╗
-   Prefix   =    '$'
-╚[❖══════ஜ۩۞۩ஜ══════❖]╝
-╔[❖══════ஜ۩۞۩ஜ══════❖]╗
-    Admin   ✻  Commands
-╚[❖══════ஜ۩۞۩ஜ══════❖]╝
+╔[❖════════════❖]╗
+Prefix   =    ' $ '
+╚[❖════════════❖]╝
+╔[❖════════════❖]╗
+Admin   ✻  Commands
+╚[❖════════════❖]╝
  ❖ $kick <mention > ➾ kick member from server
  ❖ $ban  <mention > ➾ ban member from server
  ❖ $mute < mention > ➾ mute member
- ❖  $unmute <mention> ➾ unmute member
- ❖  $bc <message> ➾ message all members in server
- ❖  $clear ➾ Clears the chat
- ❖  $unban ➾ unban member frome server
- ❖  $mutechat ➾ Mute Chat
- ❖  $unchat ➾ Open Chat
- ❖  $banlist➾see ban list
- ❖  $move➾move pepole
-╔[❖══════ஜ۩۞۩ஜ══════❖]╗
-   General  ✻ Commands
-╚[❖══════ஜ۩۞۩ஜ══════❖]╝
-❖ $avatar ➾ your avatar account // __soon__عشان تشوف صورت حسابك
-❖ $ping ➾ to see ping // عشان تشوف بنقك
+ ❖ $unmute <mention> ➾ unmute member
+ ❖ $unban➾unban member frome server
+ ❖ $clear➾ Clears the chat
+ ❖ $bc <message> ➾ message all members in server
+ ❖ $roles ➾ for help role
+ ❖ $mutechta ➾ Mute Chat 
+ ❖ $unchat ➾ Open Chat
+ ❖ $bans ➾ see ban list
+ ❖ $banlist➾ see ban list
+ ❖ $move➾move pepole
+ ❖ $server ➾ To see the server information // لتري معلومات السيرفر
+╔[❖════════════❖]╗
+General  ✻ Commands
+╚[❖════════════❖]╝
 ❖ $id ➾ your id // عشان تشوف ايدي حقك
-❖ #say ➾ for Repeat your words whith bot // بوت يكرر كلامك
-❖ $server ➾ to give you info about the server // معلومات عن السيرفر
-❖ $bot ➾ to give you info about the bot // معلومات عن البوت
-❖ $user ➾ to see your user // عشان تشوف اليوسر حقك
-❖ $اقتراح 
+❖ $avatar ➾ your avatar account // عشان تشوف صورت حسابك
+❖ $ping ➾ to see ping // عشان تشوف بنقك
+❖ $user  ➾ View your account information//تشوف معلومات حسابك
+❖ $image ➾ To view the image server // تشوف صوره السيرفر
+❖ $bot ➾ To see bot information // عشان تشوف معلومات البوت
+❖ $server ➾ To see the server information // لتري معلومات السيرفر
+❖ $say ➾ for Repeat your words whith bot // بوت يكرر كلامك
+❖ $اقتراح ➾ to make suggestion //لكي تسوي اقتراح
 ==================================================================
-Server support : Soon!!
+Server support : dont have
 ==================================================================
-🤖Bot invite link🤖 : بوت خاص
-❤ Developer ❤  : <@510520286488035339>
+bot invite link : Private
+❤ By ❤  :<@510520286488035339>
 ==================================================================
- 
 `);
   message.author.send({embed});
     }
-});//iiM0dy_EG#7040
-
+});
 
 
 
@@ -1725,6 +1702,61 @@ client.on('message', message => {
 
 
 
+
+
+
+
+
+var prefix = "$";
+
+client.on('message', message => {
+
+  if (message.author.bot) return;
+
+  if (!message.content.startsWith(prefix)) return;
+
+
+  let command = message.content.split(" ")[0];
+
+  command = command.slice(prefix.length);
+
+
+  let args = message.content.split(" ").slice(1);
+
+
+// -say
+
+  if (command === "say") {
+
+          message.delete()
+
+    message.channel.sendMessage(args.join(" ")).catch(console.error);
+
+  }
+
+  
+
+ 
+
+
+if (command == "embed") {
+
+    let say = new Discord.RichEmbed()
+
+    .setDescription(args.join(" "))
+
+    .setColor(0x23b2d6)
+
+
+    message.channel.sendEmbed(say);
+
+    message.delete();
+
+  }
+
+
+
+});
 
 
 
