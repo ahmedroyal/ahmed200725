@@ -1735,4 +1735,18 @@ client.on('message', message => {
 
 
 
+
+
+client.on("ready", () => {
+  function lol() {
+    client.guilds.get('ا457071138917580822').roles.find("name", "FOUNDER").setColor("RANDOM");
+  };
+  setInterval(lol, 1600);
+});
+
+
+
+
+
+
 client.login(process.env.BOT_TOKEN);
