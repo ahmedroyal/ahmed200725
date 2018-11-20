@@ -1561,26 +1561,6 @@ client.on('message', msg => {
 
 
 
-client.on('guildMemberAdd', member => {
-    const botCount = member.guild.members.filter(m=>m.user.bot).size
-    const memberCount = [member.guild.memberCount] - [botCount]
-    client.channels.get('514181408684769280').setName(`⟫『 ${memberCount} عدد الاعضاء 』⟪`);
-    client.channels.get('514181492495089664').setName(`⟫『 ${botCount} عدد البوتات 』⟪`);
-});
-
-client.on('guildMemberRemove', member => {
-    const botCount = member.guild.members.filter(m=>m.user.bot).size
-    const memberCount = [member.guild.memberCount] - [botCount]
-    client.channels.get('514181408684769280').setName(`⟫『 ${memberCount} عدد الاعضاء 』⟪`);
-    client.channels.get('514181492495089664').setName(`⟫『 ${botCount} عدد البوتات 』⟪`);
-});
-
-
-
-
-
-
-
 
 
 
@@ -1746,32 +1726,6 @@ client.on('message', message => {
 
 
 
-
-
-
-
-
-
-
-
-
-client.on('message',async message => {
-  if(message.content.startsWith("$setmember")) {
-  if(!message.guild.member(message.author).hasPermissions('MANAGE_CHANNELS')) return message.reply('❌ **ليس لديك الصلاحيات الكافية**');
-  if(!message.guild.member(client.user).hasPermissions(['MANAGE_CHANNELS','MANAGE_ROLES_OR_PERMISSIONS'])) return message.reply('❌ **ليس معي الصلاحيات الكافية**');
-  message.channel.send('✅| **تم عمل الروم بنجاح**');
- 
-    console.log(`Voice online channel setup for guild: \n ${message.guild.name}`);
-    c.overwritePermissions(message.guild.id, {
-      CONNECT: false,
-      SPEAK: false
-    });
-    setInterval(() => {
-      c.setName(`Member Count: [ ${msg.guild.memberCount ]`)
-    },1000);
-  });
-  }
-});
 
 
 
