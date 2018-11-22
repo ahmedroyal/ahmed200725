@@ -451,24 +451,50 @@ client.on("message", message => {
 
 
 
-client.on('message', async function (message)  {
-if(message.content.startsWith(prefix+"server")) {
-const vlevel = ['None', 'Low (Must have verified email)', 'Medium (Must be register for 5 mineuts)', 'High (Need to wait 10 minutes)', 'Very High (Need verified phone on account)']
-const members = await message.guild.members.filter(m=> m.presence.status === 'online').size + message.guild.members.filter(m=> m.presence.status === 'idle').size + message.guild.members.filter(m=> m.presence.status === 'dnd').size  
-message.channel.send(new discord.RichEmbed() 
-.setAuthor(`${message.guild.name} [Server Icon URL]`, message.guild.iconURL)
-.setURL(message.guild.iconURL)
-.addField('🆔 ايدي السيرفر', message.guild.id, true)
-.addField('👑 اونر السيرفر', message.guild.owner, true)
-.addField('🗺 منطقة', message.guild.region, true)
-.addField(`👥 الاعضاء [${message.guild.memberCount}]`, `${members} online` ,true)
-.addField(`💬 القنوات`, `**${message.guild.channels.filter(c => c.type === 'category').size}** الاقسام | **${message.guild.channels.filter(c=> c.type === 'text').size}**روم كتابي | **${message.guild.channels.filter(c=> c.type === 'voice').size}** روم صوتي` ,true)
-.addField(`💠 مستوى التحقق`, vlevel[message.guild.verificationLevel] ,true)
-.addField(`👔 الرتب`, message.guild.roles.size ,true)
-.addField(`📆 تم انشأوها`, message.guild.createdAt ,true)
-)
+
+client.on("message", msg => {
+var prefix = '$';// البرفكس
+var m = msg.guild.name
+var d = msg.guild.memberCount
+var p = msg.guild.roles.size
+var c = msg.guild.channels.size
+var l = msg.guild.region
+var o = msg.guild.iconURL
+var k = msg.guild.owner
+var i = msg.guild.emojis.size
+var b = msg.guild.members.filter(m => m.user.bot).size
+var h = d - b
+var cre = `${moment(msg.guild.createdAt).format('D/M/YYYY h:mm a')} **\n** \`${moment(msg.guild.createdAt).fromNow()}\``
+var t = msg.guild.channels.filter(e => e.type === "text")
+var v = msg.guild.channels.filter(e => e.type === "voice")
+var pow = msg.guild.verificationLevel
+var e = msg.guild.emojis.size
+var e2 = msg.guild.emojis.array()
+var afk = msg.guild.afkChannel
+var ID = msg.guild.id
+if (msg.content.startsWith(prefix + "server")){// الامر
+var embed = new Discord.RichEmbed()
+.setColor("RANDOM")
+.setThumbnail(o)
+.addField("👑**Owner**👑⤵", k, true)
+.addField("📜**Name**📜⤵", m, true)
+.addField("🆔**ID**🆔⤵", ID, true)
+.addField("👥**MembersAll**🤖⤵", d, true)
+.addField("📕**Roles**📕⤵", p, true)
+.addField("📕**Channels**📕⤵", c, true)
+.addField("🌐**Region**🌐⤵", l, true)
+.addField("🤖**Bots**🤖⤵", b, true)
+.addField("👥**Humans**👥⤵", h, true)
+.addField("📝**TextRooms**📝⤵", `${t.size}`, true)
+.addField("🔒**verificationLevel**🔒➥", pow, true)
+.addField("🎤**VoiceRooms**🎤⤵", `${v.size}`, true)
+.addField("📆Created At📆⤵", cre,true)
+.addField("🛏AFKRoom🛏⤵", afk, true)
+msg.channel.sendEmbed(embed);
 }
-})
+});
+
+
 
 
 
@@ -1166,7 +1192,7 @@ B.react('🇧🇭').then(() => B.react('🇧🇭'))
 
 
 client.on("guildMemberAdd", member => {
-let welcomer = member.guild.channels.find("name","ᴴᴸ-chat");
+let welcomer = member.guild.channels.find("name","hub");
       if(!welcomer) return;
       if(welcomer) {
          moment.locale('ar-ly');
@@ -1191,7 +1217,7 @@ let welcomer = member.guild.channels.find("name","ᴴᴸ-chat");
 client.on('message', ( message ) => {
   if(message.author.bot) return;
 
-  if(message.channel.id !== '514539425615839234') return;
+  if(message.channel.id !== '515229557796896829') return;
 
   let types = [
     'jpg',
@@ -1239,7 +1265,7 @@ client.on('message', ( message ) => {
 
 
 client.on('guildMemberAdd', member => {
- const channel = member.guild.channels.find('name', 'ᴴᴸ-chat');
+ const channel = member.guild.channels.find('name', 'hub');
  if (!channel) return;
  channel.send(`${member}
 **__Welcome to ${member.guild.name}__**`);
@@ -1558,7 +1584,7 @@ client.on('message', message => {
 
 
 client.on('voiceStateUpdate', (old, now) => {
-  const channel = client.channels.get('515152917573926932');
+  const channel = client.channels.get('515236108339118080');
   const size = channel.name.match(/\[\s(\d+)\s\]/);
   if (!size) return channel.setName(`Voice Online: [ ${currentSize} ]`);
   if (currentSize !== size) channel.setName(`Voice Online: [ ${currentSize} ]`);
@@ -1578,28 +1604,7 @@ client.on('voiceStateUpdate', (old, now) => {
 
 
 
-client.on('message',async message => {
-    if(message.content.startsWith("$setrooms")) {
-        var currentTime = new Date(),
-        years = currentTime.getFullYear(),
-        month = currentTime.getMonth() + 1,
-        day = currentTime.getDate(),
-        week = currentTime.getDay();
-    if(!message.guild.member(message.author).hasPermissions('MANAGE_CHANNELS')) return message.reply('❌ **No Permission No Command**');
-    if(!message.guild.member(client.user).hasPermissions(['MANAGE_CHANNELS','MANAGE_ROLES_OR_PERMISSIONS'])) return message.reply('❌ **I Dont have Permissions**');
-    message.channel.send('✅| **Room is Successfully Created**');
-    message.guild.createChannel("📅 - Date " + "「" + day + "-" + month + "-" + years + "」" , 'voice').then(c => {
-      console.log(`Date channel setup for guild: \n ${message.guild.name}`);
-      c.overwritePermissions(message.guild.id, {
-        CONNECT: false,
-        SPEAK: false
-      });
-      setInterval(function() {
-        c.setName("📅 - Date " + "「" + day + "-" + month + "-" + years + "」")
-      },1000);
-    });
-    }
-  });
+
 
 
 
