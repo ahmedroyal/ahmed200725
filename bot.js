@@ -6,7 +6,7 @@ const prefix = '$'
 
 client.on('ready', () => {
   console.log(`Logged in as ${client.user.tag}!`);
-client.user.setGame(`Lords Server | iiM0dy_EG`,"http://twitch.tv/S-F")
+client.user.setGame(`Huler Server | $help`,"http://twitch.tv/S-F")
   console.log('')
   console.log('')
   console.log('╔[═════════════════════════════════════════════════════════════════]╗')
@@ -93,7 +93,6 @@ client.on('message', message => {
   let user = message.mentions.users.first();
   let reason = message.content.split(" ").slice(2).join(" ");
   /*let b5bzlog = client.channels.find("name", "5bz-log");
-
   if(!b5bzlog) return message.reply("I've detected that this server doesn't have a 5bz-log text channel.");*/
   if (message.mentions.users.size < 1) return message.reply("**منشن شخص**");
   if(!reason) return message.reply ("**اكتب سبب الطرد**");
@@ -114,98 +113,6 @@ client.on('message', message => {
   })
 }
 });
-
-
-
-
-
-
-
-
-
-
-
-client.on('message',async message => {
-  if(message.content.startsWith("$setvoice")) {
-  if(!message.guild.member(message.author).hasPermissions('MANAGE_CHANNELS')) return message.reply('❌ **ليس لديك الصلاحيات الكافية**');
-  if(!message.guild.member(client.user).hasPermissions(['MANAGE_CHANNELS','MANAGE_ROLES_OR_PERMISSIONS'])) return message.reply('❌ **ليس معي الصلاحيات الكافية**');
-  message.channel.send('✅| **تم عمل الروم بنجاح**');
-  message.guild.createChannel(`Voice Online : [ ${message.guild.members.filter(m => m.voiceChannel).size} ]` , 'voice').then(c => {
-    console.log(`Voice online channel setup for guild: \n ${message.guild.name}`);
-    c.overwritePermissions(message.guild.id, {
-      CONNECT: false,
-      SPEAK: false
-    });
-    setInterval(() => {
-      c.setName(`Voice Online : [ ${message.guild.members.filter(m => m.voiceChannel).size} ]`)
-    },1000);
-  });
-  }
-});
-
-
-
-
-
-
-
-
-
-client.on('message',async message => {
-  if(message.content.startsWith("$setMember")) {
-  if(!message.guild.member(message.author).hasPermissions('MANAGE_CHANNELS')) return message.reply('❌ **ليس لديك الصلاحيات الكافية**');
-  if(!message.guild.member(client.user).hasPermissions(['MANAGE_CHANNELS','MANAGE_ROLES_OR_PERMISSIONS'])) return message.reply('❌ **ليس معي الصلاحيات الكافية**');
-  message.channel.send('✅| **تم عمل الروم بنجاح**');
-  message.guild.createChannel(`Voice Online : [ ${message.guild.members.filter(m => m.voiceChannel).size} ]` , 'voice').then(c => {
-    console.log(`Voice online channel setup for guild: \n ${message.guild.name}`);
-    c.overwritePermissions(message.guild.id, {
-      CONNECT: false,
-      SPEAK: false
-    });
-    setInterval(() => {
-      c.setName(`MemberCount : [ ${message.guild.members.filter(m => m.voiceChannel).size} ]`)
-    },1000);
-  });
-  }
-});
-
-
-
-
-
-
-
-
-
-
-
-
-client.on('message', message =>{
-    let messageArray = message.content.split(" ");
-    let cmd = messageArray[0];
-    let args = messageArray.slice(1);
-  
-
-if(cmd === `${prefix}اقتراح`) {
-    var suggestMessage = message.content.substring(8)
-    let suggestEMBED = new Discord.RichEmbed()
-    .setColor('RANDOM')
-    .setThumbnail(message.author.avatarURL)
-    .setTitle("اقتراح جديد!!")
-    .setDescription(`الاقتراح **${args}**`)
-    .setFooter(`صحاب الاقتراح : ${message.author.tag}`);
-    message.delete().catch(O_o=>{}) 
-    let suggests = message.guild.channels.find(`name`, "الاقتراحات");
-    if (!suggests) return message.channel.send("You should make A **الاقتراحات** channel!")
-    suggests.send(suggestEMBED).then(msgS => {
-msgS.react("✅")
-msgS.react("❌")   
-})
-
-}
-
-});
-
 
 
 
@@ -685,28 +592,6 @@ Dat = currentTime.getDate()
 
 
 
-client.on('message', msg => {
-if(msg.content === ' هلا ') {
-msg.reply('**هلا فيك**');
-}
-});
-
-
-
-
-client.on('message', msg => {
-if(msg.content === 'السلام عليكم') {
-msg.reply('**وعليكم السلام**');
-}
-});
-
-
-
-
-
-
-
-
 
 client.on('message', message => {
     if(!message.channel.guild) return;
@@ -759,42 +644,6 @@ client.on('message', message => {
     return message.reply(`**لا تنشر حب لو نشرت ثاني تبلع بان**`)
     }
 }
-});
-
-
-
-
-
-
-
-
-
-
-client.on('ready', () => {
-var x = client.channels.get("478551973767938049");
-if (x) x.join();
-});
-
-
-
-
-
-
-
-client.on('message', message => { // Leaked by [ @Fr3on Gamer#9338 ]
-   if(message.content.startsWith(prefix + "invites")) {
-    message.guild.fetchInvites().then(invs => {
-      var user = message.mentions.users.first() || message.author
-      var personalInvites = invs.filter(i => i.inviter.id === user.id);
-      var inviteCount = personalInvites.reduce((p, v) => v.uses + p, 0);
-              var mmmmEmbed = new Discord.RichEmbed()
-                         .setAuthor(client.user.username)
-                         .setThumbnail(message.author.avatarURL)
- .addField(` لقد قمت بدعوة :`, ` ${inviteCount} `)
-           .setFooter(`- Requested By: ${message.author.tag}`);
-           message.channel.send(mmmmEmbed)
-});
-  }
 });
 
 
@@ -1317,7 +1166,7 @@ B.react('🇧🇭').then(() => B.react('🇧🇭'))
 
 
 client.on("guildMemberAdd", member => {
-let welcomer = member.guild.channels.find("name","«👋welcome»");
+let welcomer = member.guild.channels.find("name","ᴴᴸ-chat");
       if(!welcomer) return;
       if(welcomer) {
          moment.locale('ar-ly');
@@ -1342,7 +1191,7 @@ let welcomer = member.guild.channels.find("name","«👋welcome»");
 client.on('message', ( message ) => {
   if(message.author.bot) return;
 
-  if(message.channel.id !== '485699401319317507') return;
+  if(message.channel.id !== '514539425615839234') return;
 
   let types = [
     'jpg',
@@ -1390,7 +1239,7 @@ client.on('message', ( message ) => {
 
 
 client.on('guildMemberAdd', member => {
- const channel = member.guild.channels.find('name', '«👋welcome»');
+ const channel = member.guild.channels.find('name', 'ᴴᴸ-chat');
  if (!channel) return;
  channel.send(`${member}
 **__Welcome to ${member.guild.name}__**`);
@@ -1602,7 +1451,7 @@ message.react("❌")
 
 client.on ("guildMemberAdd", member => {
 
-   var role = member.guild.roles.find ("name", "LORDS");
+   var role = member.guild.roles.find ("name", "› Member");
    member.addRole (role);
 
 })
@@ -1708,67 +1557,8 @@ client.on('message', message => {
 
 
 
-
-client.on('message', message => {
-
-  if (message.author.bot) return;
-
-  if (!message.content.startsWith(prefix)) return;
-
-
-  let command = message.content.split(" ")[0];
-
-  command = command.slice(prefix.length);
-
-
-  let args = message.content.split(" ").slice(1);
-
-
-// -say
-
-  if (command === "say") {
-
-          message.delete()
-
-    message.channel.sendMessage(args.join(" ")).catch(console.error);
-
-  }
-
-  
-
- 
-
-
-if (command == "embed") {
-
-    let say = new Discord.RichEmbed()
-
-    .setDescription(args.join(" "))
-
-    .setColor(0x23b2d6)
-
-
-    message.channel.sendEmbed(say);
-
-    message.delete();
-
-  }
-
-
-
-});
-
-
-
-
-
-
-
-
-
-
 client.on('voiceStateUpdate', (old, now) => {
-  const channel = client.channels.get('514409303822827526');
+  const channel = client.channels.get('515152917573926932');
   const currentSize = channel.guild.members.filter(m => m.voiceChannel).size;
   const size = channel.name.match(/\[\s(\d+)\s\]/);
   if (!size) return channel.setName(`Voice Online: [ ${currentSize} ]`);
@@ -1817,52 +1607,6 @@ client.on('message',async message => {
 
 
 
-
-
-
-
-
-
-
-client.on('message',async message => {
-    if(message.content.startsWith("$uss")) {
-    if(!message.guild.member(message.author).hasPermission('MANAGE_CHANNELS')) return message.reply('❌ **No Permissions No Command**');
-    if(!message.guild.member(client.user).hasPermission(['MANAGE_CHANNELS','MANAGE_ROLES_OR_PERMISSIONS'])) return message.reply('❌ **I Dont have Perm**');
-    message.channel.send('✅| **Room is Successfully Created **');
-    message.guild.createChannel("🕐 - Time  00", 'voice').then((c) => {
-      console.log(`Time channel setup for guild: \n ${message.guild.name}`);
-      c.overwritePermissions(message.guild.id, {
-        CONNECT: false,
-        SPEAK: false
-      });
-          setInterval(function() {
- 
-        var currentTime = new Date(),
-        hours = currentTime.getHours() + 3 ,
-        minutes = currentTime.getMinutes(),
-        seconds = currentTime.getSeconds(),
-        years = currentTime.getFullYear(),
-        month = currentTime.getMonth(),
-        day = currentTime.getDate(),
-        week = currentTime.getDay();
- 
-        if (minutes < 10) {
-            minutes = "0" + minutes;
-        }
-        var suffix = "AM";
-        if (hours >= 12) {
-            suffix = "PM";
-            hours = hours - 12;
-        }
-        if (hours == 0) {
-            hours = 12;
-        }
- 
-        c.setName("🕐 - Time   「" + hours + ":" + minutes  +" " + suffix + "」");
-      },1000);
-    });
-    }
-  });
 
 
 
