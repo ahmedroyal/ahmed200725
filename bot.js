@@ -1192,7 +1192,7 @@ B.react('🇧🇭').then(() => B.react('🇧🇭'))
 
 
 client.on("guildMemberAdd", member => {
-let welcomer = member.guild.channels.find("name","huler");
+let welcomer = member.guild.channels.find("name","hub");
       if(!welcomer) return;
       if(welcomer) {
          moment.locale('ar-ly');
@@ -1265,7 +1265,7 @@ client.on('message', ( message ) => {
 
 
 client.on('guildMemberAdd', member => {
- const channel = member.guild.channels.find('name', 'huler');
+ const channel = member.guild.channels.find('name', 'hub');
  if (!channel) return;
  channel.send(`${member}
 **__Welcome to ${member.guild.name}__**`);
