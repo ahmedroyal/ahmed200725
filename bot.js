@@ -1599,4 +1599,56 @@ client.on('voiceStateUpdate', (old, now) => {
 
 
 
+
+
+
+
+
+var dat = JSON.parse("{}"); //Rèéd
+function forEachObject(obj, func) {
+    Object.keys(obj).forEach(function (key) { func(key, obj[key]) })
+} //Rèéd
+client.on("ready", () => {//Rèéd
+    var guild;//Rèéd
+    while (!guild)//Rèéd
+            guild = client.guilds.find("name", "Hulerserver")//Rèéd
+    guild.fetchInvites().then((data) => {//Rèéd
+            data.forEach((Invite, key, map) => {
+                    var Inv = Invite.code;
+                    dat[Inv] = Invite.uses;//Rèéd
+            })
+    })
+})
+client.on("guildMemberAdd", (member) => {
+    let channel = member.guild.channels.find('name', 'huler');
+    if (!channel) {
+            console.log("!channel fails");
+            return;
+    }
+    if (member.id == client.user.id) {
+            return;
+    }
+    console.log('made it till here!');
+    var guild;
+    while (!guild)
+            guild = client.guilds.find("name", "huler")
+    guild.fetchInvites().then((data) => {
+            data.forEach((Invite, key, map) => {//Rèéd
+                    var Inv = Invite.code;
+                    if (dat[Inv])
+                            if (dat[Inv] < Invite.uses) {
+                                    console.log(3);
+                                    console.log(`${member} joined over ${Invite.inviter}'s invite ${Invite.code}`)
+channel.send(`invited by : ${Invite.inviter}  `)            
+}
+                    dat[Inv] = Invite.uses;
+            })
+    })
+});
+
+
+
+
+
+
 client.login(process.env.BOT_TOKEN);
