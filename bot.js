@@ -454,7 +454,6 @@ client.on("message", message => {
 
 client.on("message", msg => {
 var prefix = '$';// البرفكس
-var m = msg.guild.name
 var d = msg.guild.memberCount
 var p = msg.guild.roles.size
 var c = msg.guild.channels.size
