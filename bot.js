@@ -472,7 +472,7 @@ var e = msg.guild.emojis.size
 var e2 = msg.guild.emojis.array()
 var afk = msg.guild.afkChannel
 var ID = msg.guild.id
-if (msg.content.startsWith(prefix + "server")){// الامر
+if (msg.content.startsWith(prefix + "servers")){// الامر
 var embed = new Discord.RichEmbed()
 .setColor("RANDOM")
 .setThumbnail(o)
@@ -1576,6 +1576,22 @@ client.on('message', message => {
 
 
 
+
+
+
+
+
+
+
+
+
+client.on('voiceStateUpdate', (old, now) => {
+  const channel = client.channels.get('515467495277330432');
+  const currentSize = channel.guild.members.filter(m => m.voiceChannel).size;
+  const size = channel.name.match(/\[\s(\d+)\s\]/);
+  if (!size) return channel.setName(`Voice Online: [ ${currentSize} ]`);
+  if (currentSize !== size) channel.setName(`Voice Online: [ ${currentSize} ]`);
+});
 
 
 
