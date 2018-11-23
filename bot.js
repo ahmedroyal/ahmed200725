@@ -1192,7 +1192,7 @@ B.react('🇧🇭').then(() => B.react('🇧🇭'))
 
 
 client.on("guildMemberAdd", member => {
-let welcomer = member.guild.channels.find("name","hub");
+let welcomer = member.guild.channels.find("name","huler");
       if(!welcomer) return;
       if(welcomer) {
          moment.locale('ar-ly');
@@ -1265,7 +1265,7 @@ client.on('message', ( message ) => {
 
 
 client.on('guildMemberAdd', member => {
- const channel = member.guild.channels.find('name', 'hub');
+ const channel = member.guild.channels.find('name', 'huler');
  if (!channel) return;
  channel.send(`${member}
 **__Welcome to ${member.guild.name}__**`);
@@ -1570,24 +1570,6 @@ client.on('message', message => {
  
            
     }
-});
-
-
-
-
-
-
-
-
-
-
-
-client.on('voiceStateUpdate', (old, now) => {
-  const channel = client.channels.get('515247210036854785');
-  const currentSize = channel.guild.members.filter(m => m.voiceChannel).size;
-  const size = channel.name.match(/\[\s(\d+)\s\]/);
-  if (!size) return channel.setName(`Voice Online: [ ${currentSize} ]`);
-  if (currentSize !== size) channel.setName(`Voice Online: [ ${currentSize} ]`);
 });
 
 
